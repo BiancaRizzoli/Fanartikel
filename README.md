@@ -1,2 +1,13 @@
 # Fanartikel
-Um den Webserver zu starten, gib npm start in der NodeJS Console ein
+Um den Webserver zu starten braucht man:
+
+- NodeJS
+- XAMP
+
+Konfiguration:
+
+- Die Datenbank unter /fanartikel/fanartikel.db importieren
+- Xamp Server starten 
+- npm start in die NodeJS Konsole eingeben
+
+Success!
