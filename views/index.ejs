@@ -14,14 +14,9 @@
   <link href='//fonts.googleapis.com/css?family=Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
   <!-- JS -->
   <script src="/javascripts/wow.min.js"></script>
-  <script>
-    new WOW().init();
-  </script>
   <script type="text/javascript" src="/javascripts/bootstrap-3.1.1.min.js"></script>
   <script src="/javascripts/simpleCart.min.js"></script>
   <script src="/javascripts/jquery.min.js"></script>
-  <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-  function hideURLbar(){ window.scrollTo(0,1); } </script>
 </head>
 
 <body>
@@ -77,9 +72,11 @@
             <div class=" grid-product ">
               <figure>
                 <a href="single.html">
+                    <% if(!rows){ %>
                   <div class="grid-img">
                     <img src="/images/<%= rows[i].BildShownSecond %>" class="img-responsive" alt="">
                   </div>
+                  <% } %>
                   <div class="grid-img">
                     <img src="/images/<%= rows[i].BildShownFirst %>" class="img-responsive" alt="">
                   </div>
