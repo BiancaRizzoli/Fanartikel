@@ -20,6 +20,7 @@ SET time_zone = "+00:00";
 -- Datenbank: `fanartikel`
 --
 
+CREATE DATABASE fanartikel;
 -- --------------------------------------------------------
 
 --

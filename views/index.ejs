@@ -1,11 +1,110 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Fanartikel</title>
+  <!-- CSS -->
+  <link href="/stylesheets/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="/stylesheets/style.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="/stylesheets/animate.min.css" rel="stylesheet">
+  <link href='//fonts.googleapis.com/css?family=Cabin:400,500,600,700' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
+  <!-- JS -->
+  <script src="/javascripts/wow.min.js"></script>
+  <script>
+    new WOW().init();
+  </script>
+  <script type="text/javascript" src="/javascripts/bootstrap-3.1.1.min.js"></script>
+  <script src="/javascripts/simpleCart.min.js"></script>
+  <script src="/javascripts/jquery.min.js"></script>
+  <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+  function hideURLbar(){ window.scrollTo(0,1); } </script>
+</head>
+
+<body>
+  <%- include('header'); -%>
+
+  <!--banner-->
+  <div class="banner-top">
+    <div class="container">
+      <h2 class="animated wow fadeInLeft" data-wow-delay=".5s">Fanartikel</h2>
+      <div class="clearfix"> </div>
+    </div>
+  </div>
+  <div class="product">
+    <div class="container">
+      <div class="col-md-3 product-bottom">
+        <!--categories-->
+        <div class="categories animated wow fadeInUp animated" data-wow-delay=".5s">
+          <h3>Categories</h3>
+          <ul class="cate">
+            <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Bekleidung</a> <span>(15)</span></li>
+            <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Schmuck</a> <span>(13)</span></li>
+            <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Küche & Wohnen</a> <span>(21)</span></li>
+            <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Taschen</a> <span>(9)</span></li>
+            <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Schreibwahren</a> <span>(14)</span></li>
+            <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Filmrepliken</a> <span>(23)</span></li>
+            <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Bücher</a> <span>(3)</span></li>
+
+          </ul>
+        </div>
+        <!--//menu-->
+        <!--colors-->
+        <div class="colors animated wow fadeInLeft animated" data-wow-delay=".5s">
+          <h3>Colors</h3>
+
+          <div class="color-top">
+            <ul>
+              <li><a href="#"><i></i></a></li>
+              <li><a href="#"><i class="color1"></i></a></li>
+              <li><a href="#"><i class="color2"></i></a></li>
+              <li><a href="#"><i class="color3"></i></a></li>
+              <li><a href="#"><i class="color4"></i></a></li>
+              <li><a href="#"><i class="color5"></i></a></li>
+              <li><a href="#"><i class="color6"></i></a></li>
+              <li><a href="#"><i class="color7"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9 animated wow fadeInRight" data-wow-delay=".5s">
+        <% for(var i=0; i < rows.length; i++) { %>
+        <div class="col-sm-4 item-grid simpleCart_shelfItem">
+          <div class="grid-pro">
+            <div class=" grid-product ">
+              <figure>
+                <a href="single.html">
+                  <div class="grid-img">
+                    <img src="/images/<%= rows[i].BildShownSecond %>" class="img-responsive" alt="">
+                  </div>
+                  <div class="grid-img">
+                    <img src="/images/<%= rows[i].BildShownFirst %>" class="img-responsive" alt="">
+                  </div>
+                </a>
+              </figure>
+            </div>
+            <div class="women">
+              <div class=bezeichnung>
+                <h6><a href="single.html">
+                    <%= rows[i].Bezeichnung %></a></h6>
+              </div>
+              <p><em class="item_price">
+                  <%= rows[i].Preis %>€</em></p>
+              <p><a href="#" data-text="Add To Cart" class="but-hover1 item_add">Add To Cart</a></p>
+              <a href="#" class="wishheart"><img src="/images/ll.png" alt=""></a>
+            </div>
+          </div>
+        </div>
+        <% } %>
+        <div class="clearfix"></div>
+      </div>
+      <div class="clearfix"></div>
+      </div>
+
+      <%- include('footer'); -%>
+</body>
+
 </html>
