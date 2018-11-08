@@ -8,18 +8,19 @@
     <title>Register</title>
     <link rel="stylesheet" href="/stylesheets/bootstrap.css">
     <link rel="stylesheet" href="/stylesheets/register.css">
+    <script src="/javascripts/bootstrap.js"></script>
 </head>
 
 <body style="background-color:#3485f9">
+    <%- messages('message', locals) %>
     <div class="register-container">
-        <%- messages('message', locals) %>
-        <form action="/login" method="POST">
+        <form action="/register" method="POST">
             <table>
                 <tbody>
                     <tr>
                         <td>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Vorname" name="fistname" required>
+                                <input type="text" class="form-control" placeholder="Vorname" name="firstname" required>
                             </div>
                         </td>
                     </tr>

@@ -38,8 +38,8 @@ router.post('/', (req, res, next) => {
               req.flash('danger', 'Error!')
               res.redirect('/register')
             } else {
-              req.flash('success', 'Success!')
-              res.redirect('/register')
+              req.flash('success', 'Benutzer erstellt!')
+              res.redirect('/login')
             }
           })
         }
