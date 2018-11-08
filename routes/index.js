@@ -14,9 +14,10 @@ var sql = 'SELECT Bezeichnung, Preis, BildShownFirst, BildShownSecond FROM artik
 /* GET home page. */
 router.get('/', function (req, res, next) {
   con.query(sql, (err, result) => {
-    if (err) res.render('error' , { message: 'Oooopsie', error: err })
+    if (err) throw err.message;
     res.render('index', { rows: result });
   })
 });
+
 
 module.exports = router;

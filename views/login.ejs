@@ -1,12 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
+    <link rel="stylesheet" href="/stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="/stylesheets/login.css">
 </head>
-<body>
-    
+
+<body style="background-color:#3485f9">
+    <div class="login-container">
+        <%- messages('message', locals) %>
+        <form action="/login" method="POST">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Benutzername" name="username" required>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Passwort" name="password"
+                                    required>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right;">
+                            <button class="btn btn-primary" type="submit">Einloggen</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
 </body>
+
 </html>
