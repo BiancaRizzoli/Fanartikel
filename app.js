@@ -26,8 +26,8 @@ app.use(session({
   name: 'Cookie',
   resave: true,
   saveUninitialized: true,
-  secret: 'supersecretpassword',
-  cookie: { maxAge: 240000 }
+  secret: '$2y$12$E2gQVtc2nDvXLAR3wh7hd.Zti0ABNUq8OTohycyN7zIF8M4XdA0cG',
+  cookie: { maxAge: 999999999999 }
 }));
 app.use(flash());
 app.use(passport.initialize());

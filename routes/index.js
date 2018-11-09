@@ -13,7 +13,7 @@ var con = mysql.createConnection({
 router.get('/', isAuthenticated, (req, res, next) => {
   var sql = 'SELECT Bezeichnung, Preis, BildShownFirst, BildShownSecond FROM artikel'
   con.query(sql, (err, result) => {
-    if (err) throw err.message;
+    if (err) throw err
     res.render('index', { rows: result });
   })
 });
