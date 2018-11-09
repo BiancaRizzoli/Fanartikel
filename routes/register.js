@@ -35,7 +35,7 @@ router.post('/', (req, res, next) => {
           ]
           con.query(sql, [values], (err, result) => {
             if (err) {
-              req.flash('danger', 'Error!')
+              req.flash('danger', 'Datenbank offline!')
               res.redirect('/register')
             } else {
               req.flash('success', 'Benutzer erstellt!')
