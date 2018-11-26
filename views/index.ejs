@@ -29,50 +29,89 @@
       <div class="clearfix"> </div>
     </div>
   </div>
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #2f2f2f;">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Dropdown
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
   <div class="product">
     <div class="container">
-      <div class="col-md-3 product-bottom">
-        <!--categories-->
-        <div class="categories animated wow fadeInUp animated" data-wow-delay=".5s">
-          <h3>Categories</h3>
-          <ul class="cate">
-            <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Bekleidung</a> <span>(15)</span></li>
-            <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Schmuck</a> <span>(13)</span></li>
-            <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Küche & Wohnen</a> <span>(21)</span></li>
-            <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Taschen</a> <span>(9)</span></li>
-            <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Schreibwahren</a> <span>(14)</span></li>
-            <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Filmrepliken</a> <span>(23)</span></li>
-            <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Bücher</a> <span>(3)</span></li>
+      <div class="row" style="float:left">
+        <div class="col product-bottom">
+          <!--categories-->
+          <div class="categories animated wow fadeInUp animated" data-wow-delay=".5s">
+            <h3>Categories</h3>
+            <ul class="cate">
+              <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Bekleidung</a> <span>(15)</span></li>
+              <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Schmuck</a> <span>(13)</span></li>
+              <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Küche & Wohnen</a> <span>(21)</span></li>
+              <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Taschen</a> <span>(9)</span></li>
+              <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Schreibwahren</a> <span>(14)</span></li>
+              <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Filmrepliken</a> <span>(23)</span></li>
+              <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Bücher</a> <span>(3)</span></li>
 
-          </ul>
-        </div>
-        <!--//menu-->
-        <!--colors-->
-        <div class="colors animated wow fadeInLeft animated" data-wow-delay=".5s">
-          <h3>Colors</h3>
-
-          <div class="color-top">
-            <ul>
-              <li><a href="#"><i></i></a></li>
-              <li><a href="#"><i class="color1"></i></a></li>
-              <li><a href="#"><i class="color2"></i></a></li>
-              <li><a href="#"><i class="color3"></i></a></li>
-              <li><a href="#"><i class="color4"></i></a></li>
-              <li><a href="#"><i class="color5"></i></a></li>
-              <li><a href="#"><i class="color6"></i></a></li>
-              <li><a href="#"><i class="color7"></i></a></li>
             </ul>
+          </div>
+
+
+          <!--//menu-->
+          <!--colors-->
+          <div class="colors animated wow fadeInLeft animated" data-wow-delay=".5s">
+            <h3>Colors</h3>
+
+            <div class="color-top">
+              <ul>
+                <li><a href="#"><i></i></a></li>
+                <li><a href="#"><i class="color1"></i></a></li>
+                <li><a href="#"><i class="color2"></i></a></li>
+                <li><a href="#"><i class="color3"></i></a></li>
+                <li><a href="#"><i class="color4"></i></a></li>
+                <li><a href="#"><i class="color5"></i></a></li>
+                <li><a href="#"><i class="color6"></i></a></li>
+                <li><a href="#"><i class="color7"></i></a></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-md-9 animated wow fadeInRight" data-wow-delay=".5s">
+
+      <div class="row animated wow fadeInRight" data-wow-delay=".5s">
         <% for(var i=0; i < rows.length; i++) { %>
-        <div class="col-sm-4 item-grid simpleCart_shelfItem">
-          <div class="grid-pro">
+        <div class="col item-grid simpleCart_shelfItem" style="width: 200px;float: left;margin: 10px;padding:0px">
+          <div class="grid-pro" style="width:200px; margin: auto">
             <div class=" grid-product ">
               <figure>
                 <a href="single.html">
-                    <% if(!rows){ %>
+                  <% if(!rows){ %>
                   <div class="grid-img">
                     <img src="/images/<%= rows[i].BildShownSecond %>" class="img-responsive" alt="">
                   </div>
@@ -84,7 +123,7 @@
               </figure>
             </div>
             <div class="women">
-              <div class=bezeichnung>
+              <div class="bezeichnung">
                 <h6><a href="single.html">
                     <%= rows[i].Bezeichnung %></a></h6>
               </div>
@@ -99,9 +138,10 @@
         <div class="clearfix"></div>
       </div>
       <div class="clearfix"></div>
-      </div>
+    </div>
 
-      <%- include('footer'); -%>
+
+    <%- include('footer'); -%>
 </body>
 
 </html>
