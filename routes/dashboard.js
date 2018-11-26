@@ -9,7 +9,7 @@ var con = mysql.createConnection({
     database: "fanartikel"
   });
 
-  /* GET login page */
+  /* GET dashboard page */
 router.get('/', (req, res, next) => {
     res.render('dashboard')
 })

@@ -13,6 +13,9 @@
 
 <body style="background-color:#3485f9">
     <%- messages('message', locals) %>
+    <div style="float: right; padding: 10px">
+        <button onclick="window.location = '/login'" type="button" class="btn btn-secondary btn-left">Anmelden</button>
+    </div>
     <div class="register-container">
         <form action="/register" method="POST">
             <table>
@@ -48,14 +51,16 @@
                     <tr>
                         <td>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Postleitzahl" name="zipcode" required>
+                                <input type="number" class="form-control" placeholder="Postleitzahl" name="zipcode"
+                                    required>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Benutzername" name="username" required>
+                                <input type="text" class="form-control" placeholder="Benutzername" name="username"
+                                    required>
                             </div>
                         </td>
                     </tr>
@@ -67,9 +72,10 @@
                             </div>
                         </td>
                     </tr>
+                    </tr>
                     <tr>
                         <td style="text-align: right;">
-                            <button class="btn btn-primary" type="submit">Account erstellen</button>
+                            <button class="btn btn-primary" type="submit">Registrieren</button>
                         </td>
                     </tr>
                 </tbody>

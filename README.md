@@ -11,3 +11,8 @@ Konfiguration:
 - npm start in die NodeJS Konsole eingeben
 
 Success!
+
+ToDo:
+- Admin Dashboard
+- Haupseite fixen
+    - Abmelden Button einfügen

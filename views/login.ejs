@@ -13,6 +13,9 @@
 
 <body style="background-color:#3485f9">
     <%- messages('message', locals) %>
+    <div style="float: right; padding: 10px">
+        <button onclick="window.location = '/register'" type="button" class="btn btn-secondary btn-left">Registrieren</button>
+    </div>
     <div class="login-container">
         <form action="/login" method="POST">
             <table>
