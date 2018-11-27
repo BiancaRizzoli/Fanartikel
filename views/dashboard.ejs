@@ -19,7 +19,7 @@
     <div class="container mx-auto my-4">
         <div class="card text-center">
             <div class="card-header">
-                <ul class="nav nav-pills card-header-pills" id="pills-tab" role="tablist">
+                <ul class="nav nav-pills card-header-pills nav-fill" id="pills-tab" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" id="pills-upload-tab" data-toggle="pill" href="#pills-upload" role="tab"
                             aria-controls="pills-upload" aria-selected="true">Produkt hochladen</a>
@@ -37,36 +37,94 @@
             <div class="card-body">
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-upload" role="tabpanel" aria-labelledby="pills-upload-tab">
-                        <form action="/upload" method="POST">
+                        <form action="/dashboard/upload" method="POST" enctype="multipart/form-data">
                             <div class="input-group mb-3">
-                                <input class="form-control-file" type="file" name="pic2" id="">
+                                <input class="form-control-file" type="file" name="pic1" required>
                             </div>
                             <div class="input-group mb-3">
-                                <input class="form-control-file" type="file" name="pic2" id="">
+                                <input class="form-control-file" type="file" name="pic2" required>
                             </div>
                             <div class="input-group mb-3 w-25">
-                                <input class="form-control" type="number" step="0.01" name="price" id="" placeholder="Preis">
+                                <input class="form-control" type="number" step="0.01" name="price" placeholder="Preis"
+                                    required>
                             </div>
                             <div class="input-group mb-3">
-                                <input class="form-control" type="text" name="text" placeholder="Beschreibung">
+                                <input class="form-control" type="text" name="text" placeholder="Beschreibung" required>
                             </div>
                             <div class="input-group mb-3 w-25">
-                                <select class="form-control" name="currency" id="">
-                                    <option value="EUR">Euro</option>
-                                    <option value="US">Dollar</option>
-                                    <option value="GBP">Pfund</option>
+                                <select class="form-control" name="currency" required>
+                                    <option value="EURO">Euro</option>
+                                    <option value="DOLLAR">Dollar</option>
+                                    <option value="PFUND">Pfund</option>
                                 </select>
                             </div>
                             <div class="input-group">
-                                    <button class="btn btn-success" type="submit">Submit</button>
+                                <button class="btn btn-success" type="submit">Hinzufügen</button>
                             </div>
                         </form>
                     </div>
                     <div class="tab-pane fade" id="pills-delete" role="tabpanel" aria-labelledby="pills-delete-tab">
-
+                        <form action="/dashboard/delete" method="POST" enctype="multipart/form-data">
+                            <table class="table table-hover table-responsive-md">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Preis</th>
+                                        <th scope="col">Währung</th>
+                                        <th scope="col">Beschreibung</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="checkbox" name="checkbox"></td>
+                                        <td>Produktname 1</td>
+                                        <td>39,99</td>
+                                        <td>EURO</td>
+                                        <td>Produktbeschreibung 1</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" name="checkbox"></td>
+                                        <td>Produktname 2</td>
+                                        <td>35,99</td>
+                                        <td>EURO</td>
+                                        <td>Produktbeschreibung 2</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="input-group mb-3">
+                                <button class="btn btn-danger" type="submit">Löschen</button>
+                            </div>
+                        </form>
                     </div>
                     <div class="tab-pane fade" id="pills-user" role="tabpanel" aria-labelledby="pills-user-tab">
-
+                        <form action="/dashboard/user" method="POST" enctype="multipart/form-data">
+                            <div class="input-group mb-1">
+                                <p class="card-text">
+                                    Benutzer auswählen
+                                </p>
+                            </div>
+                            <div class="input-group mb-3">
+                                <select class="form-control w-25" name="user" required>
+                                    <option value="User1">User 1</option>
+                                    <option value="User 2">User 2</option>
+                                </select>
+                            </div>
+                            <div class="input-group mb-1">
+                                <p class="card-text">
+                                    Rechte
+                                </p>
+                            </div>
+                            <div class="input-group mb-3">
+                                <select class="form-control w-25" name="right" required>
+                                    <option value="admin">Admin</option>
+                                    <option value="normie">Normie</option>
+                                </select>
+                            </div>
+                            <div class="input-group mb-3">
+                                <button class="btn btn-warning" type="submit">Aktualisieren</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
