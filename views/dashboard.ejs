@@ -44,12 +44,12 @@
                             <div class="input-group mb-3">
                                 <input class="form-control-file" type="file" name="pic2" required>
                             </div>
+                            <div class="input-group mb-3">
+                                <input class="form-control" type="text" name="text" placeholder="Beschreibung" required>
+                            </div>
                             <div class="input-group mb-3 w-25">
                                 <input class="form-control" type="number" step="0.01" name="price" placeholder="Preis"
                                     required>
-                            </div>
-                            <div class="input-group mb-3">
-                                <input class="form-control" type="text" name="text" placeholder="Beschreibung" required>
                             </div>
                             <div class="input-group mb-3 w-25">
                                 <select class="form-control" name="currency" required>
@@ -69,27 +69,30 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Name</th>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Beschreibung</th>
                                         <th scope="col">Preis</th>
                                         <th scope="col">Währung</th>
-                                        <th scope="col">Beschreibung</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <% for(var i=0; i < rows.length; i++) { %>
                                     <tr>
-                                        <td><input type="checkbox" name="checkbox"></td>
-                                        <td>Produktname 1</td>
-                                        <td>39,99</td>
-                                        <td>EURO</td>
-                                        <td>Produktbeschreibung 1</td>
+                                        <td><input type="checkbox" name="checkbox<%= i %>"></td>
+                                        <td>
+                                            <%= rows[i].ArtID %>
+                                        </td>
+                                        <td>
+                                            <%= rows[i].Bezeichnung %>
+                                        </td>
+                                        <td>
+                                            <%= rows[i].Preis %>
+                                        </td>
+                                        <td>
+                                            <%= rows[i].Waehrung %>
+                                        </td>
                                     </tr>
-                                    <tr>
-                                        <td><input type="checkbox" name="checkbox"></td>
-                                        <td>Produktname 2</td>
-                                        <td>35,99</td>
-                                        <td>EURO</td>
-                                        <td>Produktbeschreibung 2</td>
-                                    </tr>
+                                    <% } %>
                                 </tbody>
                             </table>
                             <div class="input-group mb-3">
@@ -98,16 +101,20 @@
                         </form>
                     </div>
                     <div class="tab-pane fade" id="pills-user" role="tabpanel" aria-labelledby="pills-user-tab">
-                        <form action="/dashboard/user" method="POST" enctype="multipart/form-data">
+                        <form action="/dashboard/userchange" method="POST" enctype="multipart/form-data">
+                            <h5 class="card-title">Benutzer befördern</h5>
                             <div class="input-group mb-1">
                                 <p class="card-text">
                                     Benutzer auswählen
                                 </p>
                             </div>
                             <div class="input-group mb-3">
-                                <select class="form-control w-25" name="user" required>
-                                    <option value="User1">User 1</option>
-                                    <option value="User 2">User 2</option>
+                                <select class="form-control w-25" name="userchange" required>
+                                    <% for(var i=0; i < user.length; i++) { %>
+                                    <option value="<%= user[i].Benutzername %>">
+                                        <%= user[i].Benutzername %>
+                                    </option>
+                                    <% } %>
                                 </select>
                             </div>
                             <div class="input-group mb-1">
@@ -123,6 +130,26 @@
                             </div>
                             <div class="input-group mb-3">
                                 <button class="btn btn-warning" type="submit">Aktualisieren</button>
+                            </div>
+                        </form>
+                        <form action="/dashboard/userremove" method="POST" enctype="multipart/form-data">
+                            <h5 class="card-title">Benutzer löschen</h5>
+                            <div class="input-group mb-1">
+                                <p class="card-text">
+                                    Benutzer auswählen
+                                </p>
+                            </div>
+                            <div class="input-group mb-3">
+                                <select class="form-control w-25" name="userremove" required>
+                                    <% for(var i=0; i < user.length; i++) { %>
+                                    <option value="<%= user[i].Benutzername %>">
+                                        <%= user[i].Benutzername %>
+                                    </option>
+                                    <% } %>
+                                </select>
+                            </div>
+                            <div class="input-group mb-3">
+                                <button class="btn btn-danger" type="submit">Löschen</button>
                             </div>
                         </form>
                     </div>
