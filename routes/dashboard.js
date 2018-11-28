@@ -22,7 +22,6 @@ router.get('/', isAuthenticated, (req, res, next) => {
         if (err) {
           res.redirect('/')
         } else {
-          console.log(user[0].Benutzername)
           res.render('dashboard', { rows: result, user: user })
         }
       })
