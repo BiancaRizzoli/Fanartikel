@@ -17,12 +17,19 @@ router.get('/', isAuthenticated, (req, res, next) => {
     if (err) {
       res.redirect('/')
     } else {
-      var sql ='SELECT Benutzername FROM benutzer'
-      con.query(sql, (err, user)=>{
+      var sql = 'SELECT Benutzername FROM benutzer'
+      con.query(sql, (err, user) => {
         if (err) {
           res.redirect('/')
         } else {
-          res.render('dashboard', { rows: result, user: user })
+          var sql = 'SELECT Status FROM status'
+          con.query(sql, (err, rights) => {
+            if (err) {
+              res.redirect('/')
+            } else {
+              res.render('dashboard', { rows: result, user: user, rights: rights })
+            }
+          })
         }
       })
     }
@@ -38,24 +45,46 @@ function isAuthenticated(req, res, next) {
 }
 
 router.use(fileUpload());
-router.post('/upload', (req, res, next) => {
+router.post('/upload', (req, res) => {
   console.log('Produkt hinzufügen:', req.files.pic1.name, req.files.pic2.name, req.body.price, req.body.text, req.body.currency)
-  next()
+  req.flash('sucess', 'Produkt hinzugefügt')
+  res.redirect('/dashboard')
 })
 
-router.post('/delete', (req, res, next) => {
+router.post('/delete', (req, res) => {
   console.log('Produkt löschen:', req.body.checkbox, req.body.name)
-  next()
+  req.flash('success', 'Eintrag gelöscht')
+  res.redirect('/dashboard')
 })
 
-router.post('/userchange', (req, res, next) => {
-  console.log('Rechte updaten:', req.body.userchange, req.body.right)
-  next()
+router.post('/userchange', (req, res) => {
+  if (req.body.right == 'Admin') {
+    var sql = 'UPDATE benutzer SET StatusID = 1 WHERE Benutzername = ?'
+  } else if (req.body.right == 'Kunde') {
+    var sql = 'UPDATE benutzer SET StatusID = 2 WHERE Benutzername = ?'
+  }
+  con.query(sql, [req.body.userchange], (err) => {
+    if (err) {
+      req.flash('warning', 'Error')
+      res.redirect('/dashboard')
+    } else {
+      req.flash('success', 'Rechte geändert')
+      res.redirect('/dashboard')
+    }
+  })
 })
 
-router.post('/userremove', (req, res, next) => {
-  console.log('Benutzer löschen:', req.body.userremove)
-  next()
+router.post('/userremove', (req, res) => {
+  var sql = 'DELETE FROM benutzer WHERE Benutzername = ?'
+  con.query(sql, [req.body.userremove], (err) => {
+    if (err) {
+      req.flash('warning', 'Error')
+      res.redirect('/dashboard')
+    } else {
+      req.flash('success', 'Benutzer gelöscht')
+      res.redirect('/dashboard')
+    }
+  })
 })
 
 

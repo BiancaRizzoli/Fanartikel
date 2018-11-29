@@ -29,9 +29,9 @@ router.post('/', (req, res, next) => {
           req.flash('danger', 'Error!')
           res.redirect('/register')
         } else {
-          var sql = 'INSERT INTO benutzer (Vorname, Nachname, Adresse, Postleitzahl, Ort, Benutzername, Passwort) VALUES ?'
+          var sql = 'INSERT INTO benutzer (Vorname, Nachname, Adresse, Postleitzahl, Ort, Benutzername, Passwort, StatusID) VALUES ?'
           var values = [
-            [req.body.firstname, req.body.lastname, req.body.address, req.body.zipcode, req.body.city, req.body.username, hash]
+            [req.body.firstname, req.body.lastname, req.body.address, req.body.zipcode, req.body.city, req.body.username, hash, 2]
           ]
           con.query(sql, [values], (err, result) => {
             if (err) {
