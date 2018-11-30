@@ -39,9 +39,24 @@ router.get('/', isAuthenticated, (req, res, next) => {
 // Authentication 
 function isAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
-    return next();
+    var sql = 'SELECT s.Status FROM benutzer as b JOIN status AS S ON b.StatusID = s.StatusID WHERE Benutzername = ?'
+    con.query(sql, [req.user.Benutzername], (err, result) => {
+      if (err) {
+        console.log(err.message)
+        req.flash('danger', 'Datenbank offline')
+        res.redirect('/login')
+      } else {
+        if (result[0].Status == 'Admin') {
+          return next();
+        } else {
+          console.log(result[0].Status)
+          res.redirect('/')
+        }
+      }
+    })
+  } else {
+    res.redirect('/login')
   }
-  res.redirect('/login')
 }
 
 router.use(fileUpload());
@@ -86,5 +101,7 @@ router.post('/userremove', (req, res) => {
     }
   })
 })
+
+
 
 module.exports = router;
