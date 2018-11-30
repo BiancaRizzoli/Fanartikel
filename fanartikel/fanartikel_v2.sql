@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 27. Nov 2018 um 14:37
+-- Erstellungszeit: 30. Nov 2018 um 08:13
 -- Server-Version: 10.1.36-MariaDB
 -- PHP-Version: 7.2.11
 
@@ -61,6 +61,18 @@ INSERT INTO `artikel` (`Bezeichnung`, `ArtID`, `BildShownFirst`, `BildShownSecon
 ('Slytherin Shirt', 15, 'Slytherin-Shirt1.jpg', 'Slytherin-Shirt2.jpg', '15.00', 1),
 ('Slytherin Schlafanzug', 16, 'Slytherin-Schlafanzug1.jpg', 'Slytherin-Schlafanzug2.jpg', '34.90', 1),
 ('Tardis - Phone Case', 17, 'PhoneCase1.jpg', NULL, '2.99', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `artikelfandoms`
+--
+
+CREATE TABLE `artikelfandoms` (
+  `ArtFandomID` int(11) NOT NULL,
+  `ArtID` int(11) DEFAULT NULL,
+  `FandomID` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -126,6 +138,17 @@ CREATE TABLE `benutzerwunschliste` (
 -- --------------------------------------------------------
 
 --
+-- Tabellenstruktur für Tabelle `fandoms`
+--
+
+CREATE TABLE `fandoms` (
+  `FandomID` int(11) NOT NULL,
+  `Fandom` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Tabellenstruktur für Tabelle `farben`
 --
 
@@ -161,7 +184,8 @@ CREATE TABLE `status` (
 --
 
 INSERT INTO `status` (`StatusID`, `Status`) VALUES
-(1, 'Admin');
+(1, 'Admin'),
+(2, 'Kunde');
 
 -- --------------------------------------------------------
 
@@ -190,6 +214,14 @@ INSERT INTO `waehrungen` (`Waehrung`, `WaehrungsID`) VALUES
 --
 ALTER TABLE `artikel`
   ADD PRIMARY KEY (`ArtID`);
+
+--
+-- Indizes für die Tabelle `artikelfandoms`
+--
+ALTER TABLE `artikelfandoms`
+  ADD PRIMARY KEY (`ArtFandomID`),
+  ADD KEY `ArtID` (`ArtID`),
+  ADD KEY `FandomID` (`FandomID`);
 
 --
 -- Indizes für die Tabelle `artikelfarben`
@@ -221,6 +253,12 @@ ALTER TABLE `benutzerwunschliste`
   ADD PRIMARY KEY (`WunschID`),
   ADD KEY `BenID` (`BenID`),
   ADD KEY `ArtID` (`ArtID`);
+
+--
+-- Indizes für die Tabelle `fandoms`
+--
+ALTER TABLE `fandoms`
+  ADD PRIMARY KEY (`FandomID`);
 
 --
 -- Indizes für die Tabelle `farben`
@@ -257,6 +295,12 @@ ALTER TABLE `artikel`
   MODIFY `ArtID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
+-- AUTO_INCREMENT für Tabelle `artikelfandoms`
+--
+ALTER TABLE `artikelfandoms`
+  MODIFY `ArtFandomID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT für Tabelle `artikelfarben`
 --
 ALTER TABLE `artikelfarben`
@@ -281,6 +325,12 @@ ALTER TABLE `benutzerwunschliste`
   MODIFY `WunschID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT für Tabelle `fandoms`
+--
+ALTER TABLE `fandoms`
+  MODIFY `FandomID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT für Tabelle `farben`
 --
 ALTER TABLE `farben`
@@ -296,7 +346,7 @@ ALTER TABLE `kategorien`
 -- AUTO_INCREMENT für Tabelle `status`
 --
 ALTER TABLE `status`
-  MODIFY `StatusID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `StatusID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT für Tabelle `waehrungen`
@@ -307,6 +357,13 @@ ALTER TABLE `waehrungen`
 --
 -- Constraints der exportierten Tabellen
 --
+
+--
+-- Constraints der Tabelle `artikelfandoms`
+--
+ALTER TABLE `artikelfandoms`
+  ADD CONSTRAINT `artikelfandoms_ibfk_1` FOREIGN KEY (`ArtID`) REFERENCES `artikel` (`ArtID`),
+  ADD CONSTRAINT `artikelfandoms_ibfk_2` FOREIGN KEY (`FandomID`) REFERENCES `fandoms` (`FandomID`);
 
 --
 -- Constraints der Tabelle `artikelfarben`
