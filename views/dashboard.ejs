@@ -13,6 +13,7 @@
     <script src="/javascripts/bootstrap.js"></script>
     <link rel="stylesheet" href="/stylesheets/bootstrap.css">
     <script src="/javascripts/activetab.js"></script>
+    <script src="/javascripts/autoclose.js"></script>
 </head>
 
 <body>
@@ -148,7 +149,7 @@
                                 <select class="form-control w-25" name="userchange" required>
                                     <% for(var i=0; i < user.length; i++) { %>
                                     <option value="<%= user[i].Benutzername %>">
-                                        <%= user[i].Benutzername %>
+                                        <%= user[i].Benutzername %> - <%= user[i].Status %>
                                     </option>
                                     <% } %>
                                 </select>

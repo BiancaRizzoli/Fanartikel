@@ -17,7 +17,7 @@ router.get('/', isAuthenticated, (req, res, next) => {
     if (err) {
       res.redirect('/')
     } else {
-      var sql = 'SELECT Benutzername FROM benutzer'
+      var sql = 'SELECT b.Benutzername, s.Status FROM benutzer AS b JOIN status as s ON s.StatusID = b.StatusID'
       con.query(sql, (err, user) => {
         if (err) {
           res.redirect('/')
