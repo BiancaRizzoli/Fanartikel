@@ -13,6 +13,8 @@ Konfiguration:
 Success!
 
 ToDo:
-- Admin Dashboard
+- Input überprüfen
+- Logik Produkt löschen
+- Logik Produkt hinzufügen
+- Filter einfügen
 - Haupseite fixen
-    - Abmelden Button einfügen

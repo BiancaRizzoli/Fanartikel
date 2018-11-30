@@ -43,10 +43,17 @@
                     <div class="tab-pane fade show active" id="pills-upload" role="tabpanel" aria-labelledby="pills-upload-tab">
                         <form action="/dashboard/upload" method="POST" enctype="multipart/form-data">
                             <div class="input-group mb-3">
-                                <input class="form-control-file" type="file" name="pic1" required>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="customFile" name=pic1>
+                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                </div>
                             </div>
+
                             <div class="input-group mb-3">
-                                <input class="form-control-file" type="file" name="pic2" required>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="customFile" name=pic2>
+                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                </div>
                             </div>
                             <div class="input-group mb-3">
                                 <input class="form-control" type="text" name="text" placeholder="Beschreibung" required>
@@ -105,7 +112,9 @@
                                 <tbody>
                                     <% for(var i=0; i < rows.length; i++) { %>
                                     <tr>
-                                        <td><input type="checkbox" name="checkbox<%= i %>"></td>
+                                        <td>
+                                            <input type="checkbox" name="checkbox" id="">
+                                        </td>
                                         <td name="<%= rows[i].ArtID %>">
                                             <%= rows[i].ArtID %>
                                         </td>
