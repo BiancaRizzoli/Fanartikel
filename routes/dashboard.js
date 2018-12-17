@@ -42,14 +42,12 @@ function isAuthenticated(req, res, next) {
     var sql = 'SELECT s.Status FROM benutzer as b JOIN status AS S ON b.StatusID = s.StatusID WHERE Benutzername = ?'
     con.query(sql, [req.user.Benutzername], (err, result) => {
       if (err) {
-        console.log(err.message)
         req.flash('danger', 'Datenbank offline')
         res.redirect('/login')
       } else {
         if (result[0].Status == 'Admin') {
           return next();
         } else {
-          console.log(result[0].Status)
           res.redirect('/')
         }
       }
@@ -61,15 +59,40 @@ function isAuthenticated(req, res, next) {
 
 router.use(fileUpload());
 router.post('/upload', (req, res) => {
-  console.log('Produkt hinzufügen:', req.files.pic1.name, req.files.pic2.name, req.body.price, req.body.text, req.body.currency)
-  req.flash('sucess', 'Produkt hinzugefügt')
-  res.redirect('/dashboard')
+  var currency
+  if (req.body.currency == 'EURO') {
+    currency = 1
+  } else if (req.body.currency == 'DOLLAR') {
+    currency = 2
+  } else if (req.body.currency == 'PFUND') {
+    currency = 3
+  } else {
+    currency = 1
+  }
+  var sql = 'INSERT INTO artikel (Bezeichnung, BildShownFirst, BildShownSecond, Preis, WaehrungsID) VALUES ?'
+  var values = [[req.body.text, req.files.pic1.name, req.files.pic2.name, req.body.price, currency]]
+  con.query(sql, [values], (err) => {
+    if (err) {
+      req.flash('danger', 'Error')
+      res.redirect('/dashboard')
+    } else {
+      req.flash('sucess', 'Produkt hinzugefügt')
+      res.redirect('/dashboard')
+    }
+  })
 })
 
 router.post('/delete', (req, res) => {
-  console.log('Produkt löschen:', req.body.checkbox, req.body.name)
-  req.flash('success', 'Eintrag gelöscht')
-  res.redirect('/dashboard')
+  var sql = 'DELETE FROM artikel WHERE ArtID IN (?)'
+  con.query(sql, [req.body], (err) => {
+    if (err) {
+      req.flash('danger', 'Error')
+      res.redirect('/dashboard')
+    } else {
+      req.flash('success', 'Produkt gelöscht')
+      res.redirect('/dashboard')
+    }
+  })
 })
 
 router.post('/userchange', (req, res) => {

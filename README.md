@@ -17,4 +17,5 @@ ToDo:
 - Logik Produkt löschen
 - Logik Produkt hinzufügen
 - Filter einfügen
-- Haupseite fixen
+- Hauptseite fixen
+- Selbst löschen fixen
