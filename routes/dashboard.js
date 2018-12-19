@@ -76,7 +76,7 @@ router.post('/upload', (req, res) => {
       req.flash('danger', 'Error')
       res.redirect('/dashboard')
     } else {
-      req.flash('sucess', 'Produkt hinzugefügt')
+      req.flash('success', 'Produkt hinzugefügt')
       res.redirect('/dashboard')
     }
   })
@@ -87,10 +87,10 @@ router.post('/delete', (req, res) => {
   con.query(sql, [req.body], (err) => {
     if (err) {
       req.flash('danger', 'Error')
-      res.redirect('/dashboard')
+      res.send('WRONG')
     } else {
       req.flash('success', 'Produkt gelöscht')
-      res.redirect('/dashboard')
+      res.send('OK')
     }
   })
 })
@@ -113,16 +113,22 @@ router.post('/userchange', (req, res) => {
 })
 
 router.post('/userremove', (req, res) => {
-  var sql = 'DELETE FROM benutzer WHERE Benutzername = ?'
-  con.query(sql, [req.body.userremove], (err) => {
-    if (err) {
-      req.flash('warning', 'Error')
-      res.redirect('/dashboard')
-    } else {
-      req.flash('success', 'Benutzer gelöscht')
-      res.redirect('/dashboard')
-    }
-  })
+  if (req.user.Benutzername === req.user.userremove) {
+    req.flash('warning', 'Du kannst dich nicht selber löschen!')
+    res.redirect('/dashboard')
+  } else {
+    var sql = 'DELETE FROM benutzer WHERE Benutzername = ?'
+    con.query(sql, [req.body.userremove], (err) => {
+      if (err) {
+        req.flash('warning', 'Error')
+        res.redirect('/dashboard')
+      } else {
+        console.log(req.user)
+        req.flash('success', 'Benutzer gelöscht')
+        res.redirect('/dashboard')
+      }
+    })
+  }
 })
 
 

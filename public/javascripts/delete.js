@@ -8,7 +8,13 @@ $(document).ready(() => {
                 type: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify(ArtID),
-                dataType: 'json'
+                dataType: 'json',
+                success: ()=>{
+                    window.location.reload()
+                },
+                error:  ()=>{
+                    window.location.reload()
+                }
             })
         }
     })
@@ -17,7 +23,8 @@ $(document).ready(() => {
 function addRows(ID) {
     if (document.getElementById(ID).checked) {
         ArtID.push(ID)
-    } else {
-        // ID löschen
-    }
+    } else { 
+        var index = ArtID.indexOf(ID)
+        ArtID.splice(index, 1)
+    } 
 }
