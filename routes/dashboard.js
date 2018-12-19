@@ -113,7 +113,7 @@ router.post('/userchange', (req, res) => {
 })
 
 router.post('/userremove', (req, res) => {
-  if (req.user.Benutzername === req.user.userremove) {
+  if (req.user.Benutzername === req.body.userremove) {
     req.flash('warning', 'Du kannst dich nicht selber löschen!')
     res.redirect('/dashboard')
   } else {

@@ -23,18 +23,18 @@
             <div class="card-header">
                 <ul class="nav nav-pills card-header-pills nav-fill" id="pills-tab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="pills-upload-tab" data-toggle="pill" href="#pills-upload" role="tab"
+                        <a class="nav-link active mx-1 my-1" id="pills-upload-tab" data-toggle="pill" href="#pills-upload" role="tab"
                             aria-controls="pills-upload" aria-selected="true">Produkt hochladen</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="pills-delete-tab" data-toggle="pill" href="#pills-delete" role="tab"
+                        <a class="nav-link  mx-1 my-1" id="pills-delete-tab" data-toggle="pill" href="#pills-delete" role="tab"
                             aria-controls="pills-delete" aria-selected="false">Produkt löschen</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="pills-user-tab" data-toggle="pill" href="#pills-user" role="tab"
+                        <a class="nav-link  mx-1 my-1" id="pills-user-tab" data-toggle="pill" href="#pills-user" role="tab"
                             aria-controls="pills-user" aria-selected="false">Benutzer verwalten</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item  mx-1 my-1">
                         <a class="btn btn-secondary" href="/logout" role=button>Logout</a>
                     </li>
                 </ul>
@@ -44,10 +44,10 @@
                     <div class="tab-pane fade show active" id="pills-upload" role="tabpanel" aria-labelledby="pills-upload-tab">
                         <form action="/dashboard/upload" method="POST" enctype="multipart/form-data">
                             <div class="input-group mb-3">
-                                <input type="file" name="pic1" id="pic1">
+                                <input type="file" name="pic1" id="pic1" required>
                             </div>
                             <div class="input-group mb-3">
-                                <input type="file" name="pic2" id="pic2">
+                                <input type="file" name="pic2" id="pic2" required>
                             </div>
                             <div class="input-group mb-3">
                                 <input class="form-control" type="text" name="text" placeholder="Beschreibung" required>

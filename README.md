@@ -13,9 +13,6 @@ Konfiguration:
 Success!
 
 ToDo:
-- Input überprüfen
-- Logik Produkt löschen
 - Logik Produkt hinzufügen
 - Filter einfügen
 - Hauptseite fixen
-- Selbst löschen fixen
