@@ -4,7 +4,8 @@ var mysql = require('mysql');
 var bcrypt = require('bcryptjs');
 
 
-var con = mysql.createConnection({
+var con = mysql.createPool({
+  connectionLimit: 1,
   host: "localhost",
   user: "root",
   password: "",
@@ -12,7 +13,7 @@ var con = mysql.createConnection({
 });
 
 /* GET register page */
-router.get('/', (req, res, next) => {
+router.get('/', (req, res) => {
   res.render('register')
 })
 

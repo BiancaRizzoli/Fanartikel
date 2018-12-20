@@ -2,8 +2,10 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql')
 var fileUpload = require('express-fileupload')
+var path = require('path')
 
-var con = mysql.createConnection({
+var con = mysql.createPool({
+  connectionLimit: 1,
   host: "localhost",
   user: "root",
   password: "",
@@ -15,17 +17,17 @@ router.get('/', isAuthenticated, (req, res, next) => {
   var sql = 'SELECT a.ArtID, a.Bezeichnung, a.Preis, w.Waehrung FROM artikel as a JOIN waehrungen as w ON a.WaehrungsID = w.WaehrungsID'
   con.query(sql, (err, result) => {
     if (err) {
-      res.redirect('/')
+      res.send('500: Something broke');
     } else {
       var sql = 'SELECT b.Benutzername, s.Status FROM benutzer AS b JOIN status as s ON s.StatusID = b.StatusID'
       con.query(sql, (err, user) => {
         if (err) {
-          res.redirect('/')
+          res.send('500: Something broke');
         } else {
           var sql = 'SELECT Status FROM status'
           con.query(sql, (err, rights) => {
             if (err) {
-              res.redirect('/')
+              res.send('500: Something broke');
             } else {
               res.render('dashboard', { rows: result, user: user, rights: rights })
             }
@@ -69,14 +71,31 @@ router.post('/upload', (req, res) => {
   } else {
     currency = 1
   }
-  var sql = 'INSERT INTO artikel (Bezeichnung, BildShownFirst, BildShownSecond, Preis, WaehrungsID) VALUES ?'
-  var values = [[req.body.text, req.files.pic1.name, req.files.pic2.name, req.body.price, currency]]
-  con.query(sql, [values], (err) => {
-    if (err) {
-      req.flash('danger', 'Error')
-      res.redirect('/dashboard')
+
+  var file1 = req.files.pic1
+  var file2 = req.files.pic2
+  file1.mv(path.join(__dirname, '../public/images/', req.files.pic1.name), (err) => {
+    if (!err) {
+      file2.mv(path.join(__dirname, '../public/images/', req.files.pic2.name), (err) => {
+        if (!err) {
+          var sql = 'INSERT INTO artikel (Bezeichnung, BildShownFirst, BildShownSecond, Preis, WaehrungsID) VALUES ?'
+          var values = [[req.body.text, req.files.pic1.name, req.files.pic2.name, req.body.price, currency]]
+          con.query(sql, [values], (err) => {
+            if (err) {
+              req.flash('danger', 'Error')
+              res.redirect('/dashboard')
+            } else {
+              req.flash('success', 'Produkt hinzugefügt')
+              res.redirect('/dashboard')
+            }
+          })
+        } else {
+          req.flash('danger', 'Error')
+          res.redirect('/dashboard')
+        }
+      })
     } else {
-      req.flash('success', 'Produkt hinzugefügt')
+      req.flash('danger', 'Error')
       res.redirect('/dashboard')
     }
   })

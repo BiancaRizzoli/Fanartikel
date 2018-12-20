@@ -5,7 +5,8 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcryptjs');
 
-var con = mysql.createConnection({
+var con = mysql.createPool({
+  connectionLimit: 1,
   host: "localhost",
   user: "root",
   password: "",
@@ -13,7 +14,7 @@ var con = mysql.createConnection({
 });
 
 /* GET login page */
-router.get('/', (req, res, next) => {
+router.get('/', (req, res) => {
   res.render('login')
 })
 
@@ -43,8 +44,9 @@ passport.use('local', new LocalStrategy({
   (req, username, password, done) => {
     var sql = 'SELECT Benutzername, Passwort FROM benutzer WHERE Benutzername = ?'
     con.query(sql, [username], (err, rows) => {
-      if (err) return done(null, false, req.flash('danger', 'Datenbank offline!'));
-      if (!rows.length) {
+      if (err) {
+        return done(null, false, req.flash('danger', 'Datenbank offline!'));
+      } else if (!rows.length) {
         return done(null, false, req.flash('danger', 'Try again!'));
       } else {
         bcrypt.compare(password, rows[0].Passwort, (err, res) => {
