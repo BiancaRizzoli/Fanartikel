@@ -13,6 +13,6 @@ Konfiguration:
 Success!
 
 ToDo:
-- Admin Dashboard
-- Haupseite fixen
-    - Abmelden Button einfügen
+- Logik Produkt hinzufügen
+- Filter einfügen
+- Hauptseite fixen

@@ -7,7 +7,9 @@
             </ul>
         </div>
         <div class="header">
+            <% if (user[0].Status == 'Admin'){%>
             <a class="btn btn-secondary" href="/dashboard" role="button" style="padding:3px;font-size:15px; margin: 4px">Dashboard</a>
+            <% } %>
             <a class="btn btn-secondary" href="/logout" role="button" style="padding:3px;font-size:15px; margin: 4px; float: right">Logout</a>
             <div class="cart box_1">
                 <a href="checkout.html">
