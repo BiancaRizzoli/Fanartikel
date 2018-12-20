@@ -14,8 +14,10 @@
   <link href='//fonts.googleapis.com/css?family=Cabin:400,500,600,700' rel='stylesheet' type='text/css'>
   <link href='//fonts.googleapis.com/css?family=Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
   <!-- JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
   <script src="/javascripts/wow.min.js"></script>
   <script type="text/javascript" src="/javascripts/bootstrap.js"></script>
 </head>
@@ -51,10 +53,10 @@
               Fandoms
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a href="products.html"><img src="/images/Doctor_Who_logo_2014.png" class=mydropdownimages></a>
-                <a href="products.html"><img src="/images/Harry_Potter_logo_klein.png" class=mydropdownimages></a>
-                <a href="products.html">Supernatural</a>
-                <a href="products.html">Der Herr der Ringe</a>
+              <p><a href="products.html"><img src="/images/Doctor_Who_logo_2014.png" class=mydropdownimages></a></p>
+              <p><a href="products.html"><img src="/images/Harry_Potter_logo_klein.png" class=mydropdownimages></a></p>
+              <p><a href="products.html">Supernatural</a></p>
+              <p><a href="products.html">Der Herr der Ringe</a></p>
             </div>
           </li>
         </ul>
@@ -63,7 +65,7 @@
   </nav>
   <div class="product">
     <div class="container">
-      <div class="row" style="float:left">
+      <div class="filter">
         <div class="col product-bottom">
           <!--categories-->
           <div class="categories animated wow fadeInUp animated" data-wow-delay=".5s">
@@ -78,7 +80,7 @@
               <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Bücher</a> <span>(3)</span></li>
 
             </ul>
-          </div>
+            </div>
 
 
           <!--//menu-->
@@ -102,7 +104,7 @@
         </div>
       </div>
 
-      <div class="row animated wow fadeInRight" data-wow-delay=".5s">
+      <div class="productlist animated wow fadeInRight" data-wow-delay=".5s">
         <% for(var i=0; i < rows.length; i++) { %>
         <div class="col item-grid simpleCart_shelfItem" style="width: 200px;float: left;margin: 10px;padding:0px">
           <div class="grid-pro" style="width:200px; margin: auto">
