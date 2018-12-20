@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 30. Nov 2018 um 08:13
+-- Erstellungszeit: 30. Nov 2018 um 11:58
 -- Server-Version: 10.1.36-MariaDB
 -- PHP-Version: 7.2.11
 
@@ -98,6 +98,29 @@ CREATE TABLE `artikelkategorien` (
   `ArtKatID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Daten für Tabelle `artikelkategorien`
+--
+
+INSERT INTO `artikelkategorien` (`KatID`, `ArtID`, `ArtKatID`) VALUES
+(3, 1, 1),
+(4, 2, 2),
+(5, 3, 3),
+(7, 4, 4),
+(3, 5, 5),
+(6, 6, 6),
+(5, 7, 7),
+(5, 8, 8),
+(5, 9, 9),
+(5, 10, 10),
+(5, 11, 11),
+(5, 12, 12),
+(3, 13, 13),
+(1, 14, 14),
+(1, 15, 15),
+(1, 16, 16),
+(5, 17, 17);
+
 -- --------------------------------------------------------
 
 --
@@ -146,6 +169,18 @@ CREATE TABLE `fandoms` (
   `Fandom` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Daten für Tabelle `fandoms`
+--
+
+INSERT INTO `fandoms` (`FandomID`, `Fandom`) VALUES
+(1, 'Doctor Who'),
+(2, 'Harry Potter'),
+(3, 'Fantastic Beasts'),
+(4, 'Herr der Ringe'),
+(5, 'Sherlock'),
+(6, 'Supernatural');
+
 -- --------------------------------------------------------
 
 --
@@ -157,6 +192,19 @@ CREATE TABLE `farben` (
   `FarbID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Daten für Tabelle `farben`
+--
+
+INSERT INTO `farben` (`Farbe`, `FarbID`) VALUES
+('Schwarz', 1),
+('Weiß', 2),
+('Blau', 3),
+('Grün', 4),
+('Braun', 5),
+('Rot', 6),
+('Gelb', 7);
+
 -- --------------------------------------------------------
 
 --
@@ -167,6 +215,19 @@ CREATE TABLE `kategorien` (
   `Kategorie` varchar(255) DEFAULT NULL,
   `KatID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `kategorien`
+--
+
+INSERT INTO `kategorien` (`Kategorie`, `KatID`) VALUES
+('Bekleidung', 1),
+('Schmuck', 2),
+('Repliken', 3),
+('Schuhe', 4),
+('Zubehör', 5),
+('Zauberstäbe', 6),
+('Taschen', 7);
 
 -- --------------------------------------------------------
 
@@ -244,6 +305,7 @@ ALTER TABLE `artikelkategorien`
 --
 ALTER TABLE `benutzer`
   ADD PRIMARY KEY (`BenID`),
+  ADD UNIQUE KEY `Benutzername` (`Benutzername`),
   ADD KEY `artikel` (`StatusID`);
 
 --
@@ -310,7 +372,7 @@ ALTER TABLE `artikelfarben`
 -- AUTO_INCREMENT für Tabelle `artikelkategorien`
 --
 ALTER TABLE `artikelkategorien`
-  MODIFY `ArtKatID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ArtKatID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT für Tabelle `benutzer`
@@ -328,19 +390,19 @@ ALTER TABLE `benutzerwunschliste`
 -- AUTO_INCREMENT für Tabelle `fandoms`
 --
 ALTER TABLE `fandoms`
-  MODIFY `FandomID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `FandomID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT für Tabelle `farben`
 --
 ALTER TABLE `farben`
-  MODIFY `FarbID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `FarbID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT für Tabelle `kategorien`
 --
 ALTER TABLE `kategorien`
-  MODIFY `KatID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `KatID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT für Tabelle `status`
