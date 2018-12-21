@@ -12,7 +12,7 @@ Konfiguration:
 
 Success!
 
-ToDo:#
+ToDo:
 - Kategorien hinzufügen
 - Filter einfügen
 - Haupseite Logik

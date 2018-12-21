@@ -44,28 +44,5 @@ router.get('/logout', (req, res) => {
   res.redirect('/login');
 });
 
-// wishlist
-router.post('/wishlist', (req, res) => {
-  var selectsql = 'SELECT BenID FROM benutzer WHERE Benutzername = ?'
-  con.query(selectsql, [req.user.Benutzername], (err, result) => {
-    if (err) {
-      req.flash('danger', 'Error')
-      res.redirect('/')
-    } else {
-      var insertsql = 'INSERT INTO benutzerwunschliste (ArtID, BenID) VALUES ?'
-      var values = [[req.body, result[0].BenID]]
-      con.query(insertsql, [values], (err) => {
-        if (err) {
-          req.flash('danger', 'Error')
-          res.send('Error')
-        } else {
-          req.flash('success', 'Wunschliste gespeichert')
-          res.send('OK')
-        }
-      })
-    }
-  })
-})
-
 
 module.exports = router;
