@@ -23,11 +23,18 @@ router.get('/', isAuthenticated, (req, res) => {
           res.send('500: Something broke');
         } else {
           var sql = 'select k.Kategorie, Count(a.ArtID) AS Anzahl FROM kategorien as k JOIN artikelkategorien as a ON k.KatID = a.KatID Group By k.Kategorie'
-          con.query(sql, (err, categories)=> {
+          con.query(sql, (err, categories) => {
             if (err) {
               res.send('500: Something broke');
             } else {
-              res.render('index', { rows: result, user: user, categories: categories });
+              var sql = 'select Farbe from farben'
+              con.query(sql, (err, color) => {
+                if (err) {
+                  res.send('500: Something broke');
+                } else {
+                  res.render('index', { rows: result, user: user, categories: categories, color: color });
+                }
+              })
             }
           })
         }
@@ -37,9 +44,40 @@ router.get('/', isAuthenticated, (req, res) => {
 });
 
 router.post('/filter', (req, res) => {
-  var sql = 'select k.Kategorie, Count(a.ArtID) AS Anzahl FROM kategorien as k JOIN artikelkategorien as a ON k.KatID = a.KatID Group By k.Kategorie'
-  
-  res.send('Hello World')
+  var sql = 'SELECT a.ArtID  FROM artikel as a JOIN artikelkategorien as ak ON a.ArtID = ak.ArtID JOIN kategorien as k on ak.KatID = k.KatID WHERE k.KatID = ?'
+  con.query(sql, [req.body], (err, filterID) => {
+    if (err) {
+      res.send('Error')
+    } else {
+      var sql = 'SELECT ArtID FROM artikel'
+      con.query(sql, (err, allID) => {
+        if (err) {
+          res.send('Error')
+        } else {
+          var myWillToLive = []
+          var myGrades = []
+          var daddy = []
+          var test = []
+          for(var i = 0;i < allID.length;i++) {
+            test.push(allID[i].ArtID)
+          }
+          daddy.push(test)
+          for(var i = 0; i < allID.length; i++) {
+            myWillToLive.push(allID[i].ArtID)
+          }
+          for(var i = 0; i < filterID.length; i++) {
+            myGrades.push(filterID[i].ArtID)
+          }
+          for(var i = 0; i < myGrades.length; i++) {
+            var index = myWillToLive.indexOf(myGrades[i])
+            myWillToLive.splice(index, 1)
+          }
+          daddy.push(myWillToLive)
+          res.send(daddy)
+        }
+      })
+    }
+  })
 })
 
 // Authentication 
@@ -56,6 +94,5 @@ router.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/login');
 });
-
 
 module.exports = router;
