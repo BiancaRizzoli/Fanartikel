@@ -12,7 +12,7 @@ var con = mysql.createPool({
 
 /* GET home page. */
 router.get('/', isAuthenticated, (req, res) => {
-  var sql = 'SELECT a.Bezeichnung, a.Preis, a.BildShownFirst, a.BildShownSecond, w.Waehrung FROM artikel as a JOIN waehrungen as w ON a.WaehrungsID = w.WaehrungsID'
+  var sql = 'SELECT a.ArtID, a.Bezeichnung, a.Preis, a.BildShownFirst, a.BildShownSecond, w.Waehrung FROM artikel as a JOIN waehrungen as w ON a.WaehrungsID = w.WaehrungsID'
   con.query(sql, (err, result) => {
     if (err) {
       res.send('500: Something broke');

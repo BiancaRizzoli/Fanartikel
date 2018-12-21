@@ -71,14 +71,13 @@
           <div class="categories animated wow fadeInUp animated" data-wow-delay=".5s">
             <h3>Categories</h3>
             <ul class="cate">
-              <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Bekleidung</a> <span>(15)</span></li>
+              <li><i class="glyphicon glyphicon-menu-right"></i><a onclick="filterCategorie()">Bekleidung</a> <span>(15)</span></li>
               <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Schmuck</a> <span>(13)</span></li>
               <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Küche & Wohnen</a> <span>(21)</span></li>
               <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Taschen</a> <span>(9)</span></li>
               <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Schreibwahren</a> <span>(14)</span></li>
               <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Filmrepliken</a> <span>(23)</span></li>
               <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Bücher</a> <span>(3)</span></li>
-
             </ul>
             </div>
 
@@ -106,7 +105,7 @@
 
       <div class="productlist animated wow fadeInRight" data-wow-delay=".5s">
         <% for(var i=0; i < rows.length; i++) { %>
-        <div class="col item-grid simpleCart_shelfItem" style="width: 200px;float: left;margin: 10px;padding:0px">
+        <div class="col item-grid simpleCart_shelfItem" style="width: 200px;float: left;margin: 10px;padding:0px" id="<%= rows[i].ArtID %>">
           <div class="grid-pro" style="width:200px; margin: auto">
             <div class=" grid-product ">
               <figure>
