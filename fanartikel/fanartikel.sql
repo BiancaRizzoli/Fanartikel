@@ -1,22 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
--- https://www.phpmyadmin.net/
+-- version 4.3.11
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 30. Nov 2018 um 11:58
--- Server-Version: 10.1.36-MariaDB
--- PHP-Version: 7.2.11
+-- Erstellungszeit: 21. Dez 2018 um 09:16
+-- Server-Version: 5.6.24
+-- PHP-Version: 5.6.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Datenbank: `fanartikel`
@@ -30,37 +28,38 @@ USE `fanartikel`;
 -- Tabellenstruktur für Tabelle `artikel`
 --
 
-CREATE TABLE `artikel` (
+CREATE TABLE IF NOT EXISTS `artikel` (
   `Bezeichnung` varchar(255) DEFAULT NULL,
   `ArtID` int(11) NOT NULL,
   `BildShownFirst` varchar(255) DEFAULT NULL,
   `BildShownSecond` varchar(255) DEFAULT NULL,
   `Preis` decimal(15,2) DEFAULT NULL,
-  `WaehrungsID` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `WaehrungsID` int(11) DEFAULT NULL,
+  `FarbID` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 --
 -- Daten für Tabelle `artikel`
 --
 
-INSERT INTO `artikel` (`Bezeichnung`, `ArtID`, `BildShownFirst`, `BildShownSecond`, `Preis`, `WaehrungsID`) VALUES
-('Tardis Keksdose', 1, 'Keksdose zu.jpg', 'Keksdose offen.jpg', '29.99', 1),
-('Anti-Posession Stiefel', 2, 'Spn_Schuhe_Posession1.jpg', 'Spn_Schuhe_Posession2.jpg', '39.99', 1),
-('Doctor Who Thermo-Becher', 3, 'Doctor_Who_Coffe_Thermo1.jpg', 'Doctor_Who_Coffe_Thermo2.jpg', '7.00', 1),
-('Tardis Handtasche', 4, 'Tardis-Tasche1.jpg', 'Tardis-Tasche2.jpg', '59.99', 1),
-('Sonic Screwdriver 10.Doctor', 5, '10-Sonic1.jpg', '10-Sonic2.jpg', '36.99', 1),
-('Elderstab', 6, 'Elderstab1.jpg', 'Elderstab2.jpg', '13.00', 1),
-('Karte des Rumtreibers Thermoeffekt Tasse', 7, 'Karte-des-Rumtreibers-Tasse1.jpg', 'Karte-des-Rumtreibers-Tasse2.jpg', '9.85', 1),
-('Slytherin Notizbuch', 8, 'Slytherin-Notizbuch1.jpg', 'Slytherin-Notizbuch2.jpg', '34.90', 1),
-('Slytherin Lesezeichen', 9, 'Slytherin-Lesezeichen1.jpg', 'Slytherin-Lesezeichen2.jpg', '14.90', 1),
-('Flauschedecke Mittelerde', 10, 'Flauschedecke_Mittelerde1.jpg', 'Flauschedecke_Mittelerde2.jpg', '24.90', 1),
-('Die Eine Uhr', 11, 'Die-eine-Uhr1.jpg', 'Die-eine-Uhr2.jpg', '39.90', 1),
-('Die Eine Bettwäsche', 12, 'LotR-Bettwaesche1.jpg', 'LotR-Bettwaesche2.jpg', '34.90', 1),
-('Tardis Wecker mit Projektion', 13, 'Tardis-Wecker1.jpg', 'Tardis-Wecker2.jpg', '39.90', 1),
-('Tardis Shirt', 14, 'Tardis-Shirt1.jpg', 'Tardis-Shirt2.jpg', '15.00', 1),
-('Slytherin Shirt', 15, 'Slytherin-Shirt1.jpg', 'Slytherin-Shirt2.jpg', '15.00', 1),
-('Slytherin Schlafanzug', 16, 'Slytherin-Schlafanzug1.jpg', 'Slytherin-Schlafanzug2.jpg', '34.90', 1),
-('Tardis - Phone Case', 17, 'PhoneCase1.jpg', NULL, '2.99', 1);
+INSERT INTO `artikel` (`Bezeichnung`, `ArtID`, `BildShownFirst`, `BildShownSecond`, `Preis`, `WaehrungsID`, `FarbID`) VALUES
+('Tardis Keksdose', 1, 'Keksdose zu.jpg', 'Keksdose offen.jpg', '29.99', 1, 3),
+('Anti-Posession Stiefel', 2, 'Spn_Schuhe_Posession1.jpg', 'Spn_Schuhe_Posession2.jpg', '39.99', 1, 1),
+('Doctor Who Thermo-Becher', 3, 'Doctor_Who_Coffe_Thermo1.jpg', 'Doctor_Who_Coffe_Thermo2.jpg', '7.00', 1, 3),
+('Tardis Handtasche', 4, 'Tardis-Tasche1.jpg', 'Tardis-Tasche2.jpg', '59.99', 1, 3),
+('Sonic Screwdriver 10.Doctor', 5, '10-Sonic1.jpg', '10-Sonic2.jpg', '36.99', 1, 8),
+('Elderstab', 6, 'Elderstab1.jpg', 'Elderstab2.jpg', '13.00', 1, 5),
+('Karte des Rumtreibers Thermoeffekt Tasse', 7, 'Karte-des-Rumtreibers-Tasse1.jpg', 'Karte-des-Rumtreibers-Tasse2.jpg', '9.85', 1, 1),
+('Slytherin Notizbuch', 8, 'Slytherin-Notizbuch1.jpg', 'Slytherin-Notizbuch2.jpg', '34.90', 1, 4),
+('Slytherin Lesezeichen', 9, 'Slytherin-Lesezeichen1.jpg', 'Slytherin-Lesezeichen2.jpg', '14.90', 1, 4),
+('Flauschedecke Mittelerde', 10, 'Flauschedecke_Mittelerde1.jpg', 'Flauschedecke_Mittelerde2.jpg', '24.90', 1, 5),
+('Die Eine Uhr', 11, 'Die-eine-Uhr1.jpg', 'Die-eine-Uhr2.jpg', '39.90', 1, 1),
+('Die Eine Bettwäsche', 12, 'LotR-Bettwaesche1.jpg', 'LotR-Bettwaesche2.jpg', '34.90', 1, 1),
+('Tardis Wecker mit Projektion', 13, 'Tardis-Wecker1.jpg', 'Tardis-Wecker2.jpg', '39.90', 1, 3),
+('Tardis Shirt', 14, 'Tardis-Shirt1.jpg', 'Tardis-Shirt2.jpg', '15.00', 1, 1),
+('Slytherin Shirt', 15, 'Slytherin-Shirt1.jpg', 'Slytherin-Shirt2.jpg', '15.00', 1, 4),
+('Slytherin Schlafanzug', 16, 'Slytherin-Schlafanzug1.jpg', 'Slytherin-Schlafanzug2.jpg', '34.90', 1, 4),
+('Tardis - Phone Case', 17, 'PhoneCase1.jpg', NULL, '2.99', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -68,23 +67,35 @@ INSERT INTO `artikel` (`Bezeichnung`, `ArtID`, `BildShownFirst`, `BildShownSecon
 -- Tabellenstruktur für Tabelle `artikelfandoms`
 --
 
-CREATE TABLE `artikelfandoms` (
+CREATE TABLE IF NOT EXISTS `artikelfandoms` (
   `ArtFandomID` int(11) NOT NULL,
   `ArtID` int(11) DEFAULT NULL,
   `FandomID` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 --
--- Tabellenstruktur für Tabelle `artikelfarben`
+-- Daten für Tabelle `artikelfandoms`
 --
 
-CREATE TABLE `artikelfarben` (
-  `FarbID` int(11) DEFAULT NULL,
-  `ArtID` int(11) DEFAULT NULL,
-  `ArtFarbID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `artikelfandoms` (`ArtFandomID`, `ArtID`, `FandomID`) VALUES
+(1, 1, 1),
+(2, 2, 6),
+(3, 3, 1),
+(4, 4, 1),
+(5, 5, 1),
+(6, 6, 2),
+(7, 6, 3),
+(8, 7, 2),
+(9, 8, 2),
+(10, 9, 2),
+(11, 10, 4),
+(12, 11, 4),
+(13, 12, 4),
+(14, 13, 1),
+(15, 14, 1),
+(16, 15, 2),
+(17, 16, 2),
+(18, 17, 1);
 
 -- --------------------------------------------------------
 
@@ -92,11 +103,11 @@ CREATE TABLE `artikelfarben` (
 -- Tabellenstruktur für Tabelle `artikelkategorien`
 --
 
-CREATE TABLE `artikelkategorien` (
+CREATE TABLE IF NOT EXISTS `artikelkategorien` (
   `KatID` int(11) DEFAULT NULL,
   `ArtID` int(11) DEFAULT NULL,
   `ArtKatID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 --
 -- Daten für Tabelle `artikelkategorien`
@@ -127,7 +138,7 @@ INSERT INTO `artikelkategorien` (`KatID`, `ArtID`, `ArtKatID`) VALUES
 -- Tabellenstruktur für Tabelle `benutzer`
 --
 
-CREATE TABLE `benutzer` (
+CREATE TABLE IF NOT EXISTS `benutzer` (
   `Vorname` varchar(255) DEFAULT NULL,
   `Nachname` varchar(255) DEFAULT NULL,
   `Adresse` varchar(255) DEFAULT NULL,
@@ -137,7 +148,7 @@ CREATE TABLE `benutzer` (
   `Passwort` tinytext,
   `BenID` int(11) NOT NULL,
   `StatusID` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Daten für Tabelle `benutzer`
@@ -152,7 +163,7 @@ INSERT INTO `benutzer` (`Vorname`, `Nachname`, `Adresse`, `Postleitzahl`, `Ort`,
 -- Tabellenstruktur für Tabelle `benutzerwunschliste`
 --
 
-CREATE TABLE `benutzerwunschliste` (
+CREATE TABLE IF NOT EXISTS `benutzerwunschliste` (
   `BenID` int(11) DEFAULT NULL,
   `ArtID` int(11) DEFAULT NULL,
   `WunschID` int(11) NOT NULL
@@ -164,10 +175,10 @@ CREATE TABLE `benutzerwunschliste` (
 -- Tabellenstruktur für Tabelle `fandoms`
 --
 
-CREATE TABLE `fandoms` (
+CREATE TABLE IF NOT EXISTS `fandoms` (
   `FandomID` int(11) NOT NULL,
   `Fandom` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Daten für Tabelle `fandoms`
@@ -187,23 +198,24 @@ INSERT INTO `fandoms` (`FandomID`, `Fandom`) VALUES
 -- Tabellenstruktur für Tabelle `farben`
 --
 
-CREATE TABLE `farben` (
+CREATE TABLE IF NOT EXISTS `farben` (
   `Farbe` varchar(255) DEFAULT NULL,
   `FarbID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Daten für Tabelle `farben`
 --
 
 INSERT INTO `farben` (`Farbe`, `FarbID`) VALUES
-('Schwarz', 1),
-('Weiß', 2),
-('Blau', 3),
-('Grün', 4),
-('Braun', 5),
-('Rot', 6),
-('Gelb', 7);
+('#000000', 1),
+('#FFFFFF', 2),
+('#2134E9', 3),
+('#1F9E19', 4),
+('#6E2819', 5),
+('#E30C0C', 6),
+('#F1DB23', 7),
+('#95948F', 8);
 
 -- --------------------------------------------------------
 
@@ -211,10 +223,10 @@ INSERT INTO `farben` (`Farbe`, `FarbID`) VALUES
 -- Tabellenstruktur für Tabelle `kategorien`
 --
 
-CREATE TABLE `kategorien` (
+CREATE TABLE IF NOT EXISTS `kategorien` (
   `Kategorie` varchar(255) DEFAULT NULL,
   `KatID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Daten für Tabelle `kategorien`
@@ -235,10 +247,10 @@ INSERT INTO `kategorien` (`Kategorie`, `KatID`) VALUES
 -- Tabellenstruktur für Tabelle `status`
 --
 
-CREATE TABLE `status` (
+CREATE TABLE IF NOT EXISTS `status` (
   `StatusID` int(11) NOT NULL,
   `Status` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Daten für Tabelle `status`
@@ -254,10 +266,10 @@ INSERT INTO `status` (`StatusID`, `Status`) VALUES
 -- Tabellenstruktur für Tabelle `waehrungen`
 --
 
-CREATE TABLE `waehrungen` (
+CREATE TABLE IF NOT EXISTS `waehrungen` (
   `Waehrung` varchar(20) DEFAULT NULL,
   `WaehrungsID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Daten für Tabelle `waehrungen`
@@ -274,47 +286,31 @@ INSERT INTO `waehrungen` (`Waehrung`, `WaehrungsID`) VALUES
 -- Indizes für die Tabelle `artikel`
 --
 ALTER TABLE `artikel`
-  ADD PRIMARY KEY (`ArtID`);
+  ADD PRIMARY KEY (`ArtID`), ADD KEY `FarbID` (`FarbID`);
 
 --
 -- Indizes für die Tabelle `artikelfandoms`
 --
 ALTER TABLE `artikelfandoms`
-  ADD PRIMARY KEY (`ArtFandomID`),
-  ADD KEY `ArtID` (`ArtID`),
-  ADD KEY `FandomID` (`FandomID`);
-
---
--- Indizes für die Tabelle `artikelfarben`
---
-ALTER TABLE `artikelfarben`
-  ADD PRIMARY KEY (`ArtFarbID`),
-  ADD KEY `FarbID` (`FarbID`),
-  ADD KEY `ArtID` (`ArtID`);
+  ADD PRIMARY KEY (`ArtFandomID`), ADD KEY `ArtID` (`ArtID`), ADD KEY `FandomID` (`FandomID`);
 
 --
 -- Indizes für die Tabelle `artikelkategorien`
 --
 ALTER TABLE `artikelkategorien`
-  ADD PRIMARY KEY (`ArtKatID`),
-  ADD KEY `KatID` (`KatID`),
-  ADD KEY `ArtID` (`ArtID`);
+  ADD PRIMARY KEY (`ArtKatID`), ADD KEY `KatID` (`KatID`), ADD KEY `ArtID` (`ArtID`);
 
 --
 -- Indizes für die Tabelle `benutzer`
 --
 ALTER TABLE `benutzer`
-  ADD PRIMARY KEY (`BenID`),
-  ADD UNIQUE KEY `Benutzername` (`Benutzername`),
-  ADD KEY `artikel` (`StatusID`);
+  ADD PRIMARY KEY (`BenID`), ADD UNIQUE KEY `Benutzername` (`Benutzername`), ADD KEY `artikel` (`StatusID`);
 
 --
 -- Indizes für die Tabelle `benutzerwunschliste`
 --
 ALTER TABLE `benutzerwunschliste`
-  ADD PRIMARY KEY (`WunschID`),
-  ADD KEY `BenID` (`BenID`),
-  ADD KEY `ArtID` (`ArtID`);
+  ADD PRIMARY KEY (`WunschID`), ADD KEY `BenID` (`BenID`), ADD KEY `ArtID` (`ArtID`);
 
 --
 -- Indizes für die Tabelle `fandoms`
@@ -354,106 +350,88 @@ ALTER TABLE `waehrungen`
 -- AUTO_INCREMENT für Tabelle `artikel`
 --
 ALTER TABLE `artikel`
-  MODIFY `ArtID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
+  MODIFY `ArtID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT für Tabelle `artikelfandoms`
 --
 ALTER TABLE `artikelfandoms`
-  MODIFY `ArtFandomID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT für Tabelle `artikelfarben`
---
-ALTER TABLE `artikelfarben`
-  MODIFY `ArtFarbID` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `ArtFandomID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT für Tabelle `artikelkategorien`
 --
 ALTER TABLE `artikelkategorien`
-  MODIFY `ArtKatID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
+  MODIFY `ArtKatID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT für Tabelle `benutzer`
 --
 ALTER TABLE `benutzer`
-  MODIFY `BenID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+  MODIFY `BenID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT für Tabelle `benutzerwunschliste`
 --
 ALTER TABLE `benutzerwunschliste`
   MODIFY `WunschID` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT für Tabelle `fandoms`
 --
 ALTER TABLE `fandoms`
-  MODIFY `FandomID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
+  MODIFY `FandomID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT für Tabelle `farben`
 --
 ALTER TABLE `farben`
-  MODIFY `FarbID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
+  MODIFY `FarbID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT für Tabelle `kategorien`
 --
 ALTER TABLE `kategorien`
-  MODIFY `KatID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
+  MODIFY `KatID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT für Tabelle `status`
 --
 ALTER TABLE `status`
-  MODIFY `StatusID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+  MODIFY `StatusID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT für Tabelle `waehrungen`
 --
 ALTER TABLE `waehrungen`
-  MODIFY `WaehrungsID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+  MODIFY `WaehrungsID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- Constraints der exportierten Tabellen
 --
 
 --
+-- Constraints der Tabelle `artikel`
+--
+ALTER TABLE `artikel`
+ADD CONSTRAINT `artikel_ibfk_1` FOREIGN KEY (`FarbID`) REFERENCES `farben` (`FarbID`) ON UPDATE CASCADE;
+
+--
 -- Constraints der Tabelle `artikelfandoms`
 --
 ALTER TABLE `artikelfandoms`
-  ADD CONSTRAINT `artikelfandoms_ibfk_1` FOREIGN KEY (`ArtID`) REFERENCES `artikel` (`ArtID`),
-  ADD CONSTRAINT `artikelfandoms_ibfk_2` FOREIGN KEY (`FandomID`) REFERENCES `fandoms` (`FandomID`);
-
---
--- Constraints der Tabelle `artikelfarben`
---
-ALTER TABLE `artikelfarben`
-  ADD CONSTRAINT `artikelfarben_ibfk_1` FOREIGN KEY (`FarbID`) REFERENCES `farben` (`FarbID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `artikelfarben_ibfk_2` FOREIGN KEY (`ArtID`) REFERENCES `artikel` (`ArtID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `artikelfandoms_ibfk_1` FOREIGN KEY (`ArtID`) REFERENCES `artikel` (`ArtID`),
+ADD CONSTRAINT `artikelfandoms_ibfk_2` FOREIGN KEY (`FandomID`) REFERENCES `fandoms` (`FandomID`);
 
 --
 -- Constraints der Tabelle `artikelkategorien`
 --
 ALTER TABLE `artikelkategorien`
-  ADD CONSTRAINT `artikelkategorien_ibfk_1` FOREIGN KEY (`KatID`) REFERENCES `kategorien` (`KatID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `artikelkategorien_ibfk_2` FOREIGN KEY (`ArtID`) REFERENCES `artikel` (`ArtID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `artikelkategorien_ibfk_1` FOREIGN KEY (`KatID`) REFERENCES `kategorien` (`KatID`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `artikelkategorien_ibfk_2` FOREIGN KEY (`ArtID`) REFERENCES `artikel` (`ArtID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints der Tabelle `benutzer`
 --
 ALTER TABLE `benutzer`
-  ADD CONSTRAINT `artikel` FOREIGN KEY (`StatusID`) REFERENCES `status` (`StatusID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `artikel` FOREIGN KEY (`StatusID`) REFERENCES `status` (`StatusID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints der Tabelle `benutzerwunschliste`
 --
 ALTER TABLE `benutzerwunschliste`
-  ADD CONSTRAINT `benutzerwunschliste_ibfk_1` FOREIGN KEY (`BenID`) REFERENCES `benutzer` (`BenID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `benutzerwunschliste_ibfk_2` FOREIGN KEY (`ArtID`) REFERENCES `artikel` (`ArtID`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
+ADD CONSTRAINT `benutzerwunschliste_ibfk_1` FOREIGN KEY (`BenID`) REFERENCES `benutzer` (`BenID`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `benutzerwunschliste_ibfk_2` FOREIGN KEY (`ArtID`) REFERENCES `artikel` (`ArtID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
