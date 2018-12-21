@@ -102,14 +102,21 @@ router.post('/upload', (req, res) => {
 })
 
 router.post('/delete', (req, res) => {
-  var sql = 'DELETE FROM artikel WHERE ArtID IN (?)'
-  con.query(sql, [req.body], (err) => {
+  var selectsql = 'SELECT ArtID, BildShownFirst, BildShownSecond FROM artikel WHERE ArtID in (?)'
+  con.query(selectsql, [req.body], (err, result) => {
     if (err) {
-      req.flash('danger', 'Error')
-      res.send('WRONG')
+      res.send('you fucked up')
     } else {
-      req.flash('success', 'Produkt gelöscht')
-      res.send('OK')
+      var deletesql = 'DELETE FROM artikel WHERE ArtID IN (?)'
+      con.query(deletesql, [req.body], (err) => {
+        if (err) {
+          req.flash('danger', 'Error')
+          res.send('WRONG')
+        } else {
+          req.flash('success', 'Produkt gelöscht')
+          res.send('OK')
+        }
+      })    
     }
   })
 })
@@ -142,7 +149,6 @@ router.post('/userremove', (req, res) => {
         req.flash('warning', 'Error')
         res.redirect('/dashboard')
       } else {
-        console.log(req.user)
         req.flash('success', 'Benutzer gelöscht')
         res.redirect('/dashboard')
       }

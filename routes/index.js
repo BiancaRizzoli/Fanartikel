@@ -12,7 +12,7 @@ var con = mysql.createPool({
 
 /* GET home page. */
 router.get('/', isAuthenticated, (req, res) => {
-  var sql = 'SELECT Bezeichnung, Preis, BildShownFirst, BildShownSecond FROM artikel'
+  var sql = 'SELECT a.Bezeichnung, a.Preis, a.BildShownFirst, a.BildShownSecond, w.Waehrung FROM artikel as a JOIN waehrungen as w ON a.WaehrungsID = w.WaehrungsID'
   con.query(sql, (err, result) => {
     if (err) {
       res.send('500: Something broke');
@@ -44,8 +44,8 @@ router.get('/logout', (req, res) => {
   res.redirect('/login');
 });
 
-// Add to wishlist
-router.post('/addtowishlist', (req, res) => {
+// wishlist
+router.post('/wishlist', (req, res) => {
   var selectsql = 'SELECT BenID FROM benutzer WHERE Benutzername = ?'
   con.query(selectsql, [req.user.Benutzername], (err, result) => {
     if (err) {
@@ -67,9 +67,5 @@ router.post('/addtowishlist', (req, res) => {
   })
 })
 
-// Remove from wishlist
-router.post('/removefromwishlist', (req, res) => {
-
-})
 
 module.exports = router;

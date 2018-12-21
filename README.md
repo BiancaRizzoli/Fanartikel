@@ -12,7 +12,7 @@ Konfiguration:
 
 Success!
 
-ToDo:
-- Logik Produkt hinzufügen
+ToDo:#
+- Kategorien hinzufügen
 - Filter einfügen
-- Hauptseite fixen
+- Haupseite Logik
