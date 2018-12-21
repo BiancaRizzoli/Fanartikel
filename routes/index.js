@@ -29,6 +29,10 @@ router.get('/', isAuthenticated, (req, res) => {
   })
 });
 
+router.post('/filter', (req, res) => {
+  res.send('Hello World')
+})
+
 // Authentication 
 function isAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
