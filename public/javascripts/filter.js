@@ -8,7 +8,6 @@ $(document).ready(() => {
             data: JSON.stringify(data),
             dataType: 'json',
             success: (res) => {
-                console.log(res)
                 for (var i = 0; i < res[0].length; i++) {
                     document.getElementById(res[0][i]).style.display = 'block'
                 }
@@ -30,7 +29,6 @@ $(document).ready(() => {
             data: JSON.stringify(data),
             dataType: 'json',
             success: (res) => {
-                console.log(res)
                 for (var i = 0; i < res[0].length; i++) {
                     document.getElementById(res[0][i]).style.display = 'block'
                 }
@@ -52,7 +50,6 @@ $(document).ready(() => {
             data: JSON.stringify(data),
             dataType: 'json',
             success: (res) => {
-                console.log(res)
                 for (var i = 0; i < res[0].length; i++) {
                     document.getElementById(res[0][i]).style.display = 'block'
                 }
@@ -74,7 +71,6 @@ $(document).ready(() => {
             data: JSON.stringify(data),
             dataType: 'json',
             success: (res) => {
-                console.log(res)
                 for (var i = 0; i < res[0].length; i++) {
                     document.getElementById(res[0][i]).style.display = 'block'
                 }
@@ -96,7 +92,6 @@ $(document).ready(() => {
             data: JSON.stringify(data),
             dataType: 'json',
             success: (res) => {
-                console.log(res)
                 for (var i = 0; i < res[0].length; i++) {
                     document.getElementById(res[0][i]).style.display = 'block'
                 }
@@ -118,7 +113,6 @@ $(document).ready(() => {
             data: JSON.stringify(data),
             dataType: 'json',
             success: (res) => {
-                console.log(res)
                 for (var i = 0; i < res[0].length; i++) {
                     document.getElementById(res[0][i]).style.display = 'block'
                 }
@@ -140,7 +134,6 @@ $(document).ready(() => {
             data: JSON.stringify(data),
             dataType: 'json',
             success: (res) => {
-                console.log(res)
                 for (var i = 0; i < res[0].length; i++) {
                     document.getElementById(res[0][i]).style.display = 'block'
                 }

@@ -13,6 +13,6 @@ Konfiguration:
 Success!
 
 ToDo:
-- Kategorien hinzufügen
 - Filter einfügen
 - Haupseite Logik
+- DB Bug #1451 - Kann Eltern-Zeile nicht löschen oder aktualisieren: eine Fremdschlüsselbedingung schlägt fehl (`fanartikel`.`artikelfandoms`, CONSTRAINT `artikelfandoms_ibfk_1` FOREIGN KEY (`ArtID`) REFERENCES `artikel` (`ArtID`))

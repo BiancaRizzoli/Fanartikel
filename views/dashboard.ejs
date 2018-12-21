@@ -14,6 +14,7 @@
     <script src="/javascripts/activetab.js"></script>
     <script src="/javascripts/autoclose.js"></script>
     <script src="/javascripts/delete.js"></script>
+    <script src="/javascripts/tableFilter.js"></script>
 </head>
 
 <body>
@@ -23,12 +24,12 @@
             <div class="card-header">
                 <ul class="nav nav-pills card-header-pills nav-fill" id="pills-tab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active mx-1 my-1" id="pills-upload-tab" data-toggle="pill" href="#pills-upload" role="tab"
-                            aria-controls="pills-upload" aria-selected="true">Produkt hochladen</a>
+                        <a class="nav-link active mx-1 my-1" id="pills-upload-tab" data-toggle="pill" href="#pills-upload"
+                            role="tab" aria-controls="pills-upload" aria-selected="true">Produkt hochladen</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link  mx-1 my-1" id="pills-delete-tab" data-toggle="pill" href="#pills-delete" role="tab"
-                            aria-controls="pills-delete" aria-selected="false">Produkt löschen</a>
+                        <a class="nav-link  mx-1 my-1" id="pills-delete-tab" data-toggle="pill" href="#pills-delete"
+                            role="tab" aria-controls="pills-delete" aria-selected="false">Produkt löschen</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link  mx-1 my-1" id="pills-user-tab" data-toggle="pill" href="#pills-user" role="tab"
@@ -68,13 +69,13 @@
                             </div>
                             <div class="input-group mb-3 w-25">
                                 <select class="form-control" name="category" required>
-                                    <option value="Bekleidung">Bekleidung</option>
-                                    <option value="Schmuck">Schmuck</option>
-                                    <option value="Repliken">Repliken</option>
-                                    <option value="Schuhe">Schuhe</option>
-                                    <option value="Zubehör">Zubehör</option>
-                                    <option value="Zauberstäbe">Zauberstäbe</option>
-                                    <option value="Taschen">Taschen</option>
+                                    <option value="1">Bekleidung</option>
+                                    <option value="2">Schmuck</option>
+                                    <option value="3">Repliken</option>
+                                    <option value="4">Schuhe</option>
+                                    <option value="5">Zubehör</option>
+                                    <option value="6">Zauberstäbe</option>
+                                    <option value="7">Taschen</option>
                                 </select>
                             </div>
                             <div class="input-group mb-3 w-25">
@@ -94,42 +95,48 @@
                         </form>
                     </div>
                     <div class="tab-pane fade" id="pills-delete" role="tabpanel" aria-labelledby="pills-delete-tab">
-                            <table class="table table-hover table-responsive-md table-striped">
-                                <caption>Produktliste</caption>
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Beschreibung</th>
-                                        <th scope="col">Preis</th>
-                                        <th scope="col">Währung</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <% for(var i=0; i < rows.length; i++) { %>
-                                    <tr>
-                                        <td>
-                                            <input type="checkbox" id="<%= rows[i].ArtID %>" onclick="addRows(<%= rows[i].ArtID %>)">
-                                        </td>
-                                        <td >
-                                            <%= rows[i].ArtID %>
-                                        </td>
-                                        <td>
-                                            <%= rows[i].Bezeichnung %>
-                                        </td>
-                                        <td>
-                                            <%= rows[i].Preis %>
-                                        </td>
-                                        <td>
-                                            <%= rows[i].Waehrung %>
-                                        </td>
-                                    </tr>
-                                    <% } %>
-                                </tbody>
-                            </table>
-                            <div class="input-group mb-3">
-                                <button class="btn btn-danger" id="btn-upload">Löschen</button>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Suchen</span>
                             </div>
+                            <input type="text" class="form-control" id="search-bar" onkeyup="filter()" placeholder="Nach dem Namen suchen...">
+                        </div>
+                        <table class="table table-hover table-responsive-md table-striped" id="my-table">
+                            <caption>Produktliste</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Beschreibung</th>
+                                    <th scope="col">Preis</th>
+                                    <th scope="col">Währung</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for(var i=0; i < rows.length; i++) { %>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" id="<%= rows[i].ArtID %>" onclick="addRows(<%= rows[i].ArtID %>)">
+                                    </td>
+                                    <td>
+                                        <%= rows[i].ArtID %>
+                                    </td>
+                                    <td>
+                                        <%= rows[i].Bezeichnung %>
+                                    </td>
+                                    <td>
+                                        <%= rows[i].Preis %>
+                                    </td>
+                                    <td>
+                                        <%= rows[i].Waehrung %>
+                                    </td>
+                                </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+                        <div class="input-group mb-3">
+                            <button class="btn btn-danger" id="btn-upload">Löschen</button>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="pills-user" role="tabpanel" aria-labelledby="pills-user-tab">
                         <form action="/dashboard/userchange" method="POST" enctype="multipart/form-data">
@@ -143,7 +150,8 @@
                                 <select class="form-control w-25" name="userchange" required>
                                     <% for(var i=0; i < user.length; i++) { %>
                                     <option value="<%= user[i].Benutzername %>">
-                                        <%= user[i].Benutzername %> - <%= user[i].Status %>
+                                        <%= user[i].Benutzername %> -
+                                        <%= user[i].Status %>
                                     </option>
                                     <% } %>
                                 </select>

@@ -82,11 +82,28 @@ router.post('/upload', (req, res) => {
           var values = [[req.body.text, req.files.pic1.name, req.files.pic2.name, req.body.price, currency]]
           con.query(sql, [values], (err) => {
             if (err) {
-              req.flash('danger', 'Error')
+              req.flash('danger', 'INSERT Error')
               res.redirect('/dashboard')
             } else {
-              req.flash('success', 'Produkt hinzugefügt')
-              res.redirect('/dashboard')
+              var sql = 'SELECT ArtID FROM `artikel` WHERE Bezeichnung = ?'
+              con.query(sql, [req.body.text], (err, result) => {
+                if (err) {
+                  req.flash('danger', 'SELECT Error')
+                  res.redirect('/dashboard')
+                } else {
+                  var sql = 'INSERT INTO artikelkategorien (KatID, ArtID) VALUES ?'
+                  var values = [[req.body.category, result[0].ArtID]]
+                  con.query(sql, [values], (err) => {
+                    if (err) {
+                      req.flash('danger', 'INSERT Error')
+                      res.redirect('/dashboard')
+                    } else {
+                      req.flash('success', 'Produkt hinzugefügt')
+                      res.redirect('/dashboard')
+                    }
+                  })
+                }
+              })
             }
           })
         } else {
@@ -102,21 +119,15 @@ router.post('/upload', (req, res) => {
 })
 
 router.post('/delete', (req, res) => {
-  var selectsql = 'SELECT ArtID, BildShownFirst, BildShownSecond FROM artikel WHERE ArtID in (?)'
-  con.query(selectsql, [req.body], (err, result) => {
+  console.log(req.body)
+  var deletesql = 'DELETE FROM artikel WHERE ArtID IN (?)'
+  con.query(deletesql, [req.body], (err) => {
     if (err) {
-      res.send('you fucked up')
+      req.flash('danger', 'DELETE Error')
+      res.send('WRONG')
     } else {
-      var deletesql = 'DELETE FROM artikel WHERE ArtID IN (?)'
-      con.query(deletesql, [req.body], (err) => {
-        if (err) {
-          req.flash('danger', 'Error')
-          res.send('WRONG')
-        } else {
-          req.flash('success', 'Produkt gelöscht')
-          res.send('OK')
-        }
-      })    
+      req.flash('success', 'Produkt gelöscht')
+      res.send('OK')
     }
   })
 })

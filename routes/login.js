@@ -47,17 +47,17 @@ passport.use('local', new LocalStrategy({
       if (err) {
         return done(null, false, req.flash('danger', 'Datenbank offline!'));
       } else if (!rows.length) {
-        return done(null, false, req.flash('danger', 'Try again!'));
+        return done(null, false, req.flash('danger', 'Password oder Benutzername falsch'));
       } else {
         bcrypt.compare(password, rows[0].Passwort, (err, res) => {
           if (!err) {
             if (res) {
               return done(null, rows[0])
             } else {
-              return done(null, false, req.flash('danger', 'Try again!'));
+              return done(null, false, req.flash('danger', 'Password oder Benutzername falsch!'));
             }
           } else {
-            return done(null, false, req.flash('danger', 'Error!'));
+            return done(null, false, req.flash('danger', 'Password oder Benutzername falsch!'));
           }
         })
       }
