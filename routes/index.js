@@ -22,7 +22,14 @@ router.get('/', isAuthenticated, (req, res) => {
         if (err) {
           res.send('500: Something broke');
         } else {
-          res.render('index', { rows: result, user: user });
+          var sql = 'select k.Kategorie, Count(a.ArtID) AS Anzahl FROM kategorien as k JOIN artikelkategorien as a ON k.KatID = a.KatID Group By k.Kategorie'
+          con.query(sql, (err, categories)=> {
+            if (err) {
+              res.send('500: Something broke');
+            } else {
+              res.render('index', { rows: result, user: user, categories: categories });
+            }
+          })
         }
       })
     }
@@ -30,6 +37,8 @@ router.get('/', isAuthenticated, (req, res) => {
 });
 
 router.post('/filter', (req, res) => {
+  var sql = 'select k.Kategorie, Count(a.ArtID) AS Anzahl FROM kategorien as k JOIN artikelkategorien as a ON k.KatID = a.KatID Group By k.Kategorie'
+  
   res.send('Hello World')
 })
 

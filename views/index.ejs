@@ -71,13 +71,9 @@
           <div class="categories animated wow fadeInUp animated" data-wow-delay=".5s">
             <h3>Categories</h3>
             <ul class="cate">
-              <li><i class="glyphicon glyphicon-menu-right"></i><button id="btn-filter">Bekleidung</button><span>(15)</span></li>
-              <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Schmuck</a> <span>(13)</span></li>
-              <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Küche & Wohnen</a> <span>(21)</span></li>
-              <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Taschen</a> <span>(9)</span></li>
-              <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Schreibwahren</a> <span>(14)</span></li>
-              <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Filmrepliken</a> <span>(23)</span></li>
-              <li><i class="glyphicon glyphicon-menu-right"></i><a href="products.html">Bücher</a> <span>(3)</span></li>
+              <% for(var i=0; i < categories.length; i++) { %>
+              <li><i class="glyphicon glyphicon-menu-right"></i><button id="btn-filter"><%= categories[i].Kategorie %></button><span>(<%= categories[i].Anzahl %>)</span></li>
+             <% } %> 
             </ul>
             </div>
 
@@ -89,7 +85,6 @@
 
             <div class="color-top">
               <ul>
-                <li><a href="#"><i></i></a></li>
                 <li><a href="#"><i class="color1"></i></a></li>
                 <li><a href="#"><i class="color2"></i></a></li>
                 <li><a href="#"><i class="color3"></i></a></li>
