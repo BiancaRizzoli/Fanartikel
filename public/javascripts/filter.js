@@ -2,7 +2,7 @@ $(document).ready(() => {
     $('#btn-Bekleidung').click(() => {
         var data = [1]
         $.ajax({
-            url: '/filter',
+            url: '/category',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(data),
@@ -23,7 +23,7 @@ $(document).ready(() => {
     $('#btn-Schmuck').click(() => {
         var data = [2]
         $.ajax({
-            url: '/filter',
+            url: '/category',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(data),
@@ -44,7 +44,7 @@ $(document).ready(() => {
     $('#btn-Repliken').click(() => {
         var data = [3]
         $.ajax({
-            url: '/filter',
+            url: '/category',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(data),
@@ -65,7 +65,7 @@ $(document).ready(() => {
     $('#btn-Schuhe').click(() => {
         var data = [4]
         $.ajax({
-            url: '/filter',
+            url: '/category',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(data),
@@ -86,7 +86,7 @@ $(document).ready(() => {
     $('#btn-Zubehör').click(() => {
         var data = [5]
         $.ajax({
-            url: '/filter',
+            url: '/category',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(data),
@@ -107,7 +107,7 @@ $(document).ready(() => {
     $('#btn-Zauberstäbe').click(() => {
         var data = [6]
         $.ajax({
-            url: '/filter',
+            url: '/category',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(data),
@@ -128,7 +128,7 @@ $(document).ready(() => {
     $('#btn-Taschen').click(() => {
         var data = [7]
         $.ajax({
-            url: '/filter',
+            url: '/category',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(data),
@@ -146,4 +146,137 @@ $(document).ready(() => {
             }
         })
     })
+    $('#btn-1').click(() => {
+        var data = [1]
+        $.ajax({
+            url: '/color',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: (res) => {
+                console.log(res)
+                for (var i = 0; i < res.length; i++) {
+                    document.getElementById(res[i]).style.display = 'none'
+                }
+            },
+            error: () => {
+                console.log('Error')
+            }
+        })
+    })
+    $('#btn-2').click(() => {
+        var data = [2]
+        $.ajax({
+            url: '/color',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: (res) => {
+                console.log(res)
+            },
+            error: (res) => {
+                console.log(res)
+            }
+        })
+    })
+    $('#btn-3').click(() => {
+        var data = [3]
+        $.ajax({
+            url: '/color',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: (res) => {
+                console.log(res)
+            },
+            error: (res) => {
+                console.log(res)
+            }
+        })
+    })
+    $('#btn-4').click(() => {
+        var data = [4]
+        $.ajax({
+            url: '/color',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: (res) => {
+                console.log(res)
+            },
+            error: (res) => {
+                console.log(res)
+            }
+        })
+    })
+    $('#btn-5').click(() => {
+        var data = [5]
+        $.ajax({
+            url: '/color',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: (res) => {
+                console.log(res)
+            },
+            error: (res) => {
+                console.log(res)
+            }
+        })
+    })
+    $('#btn-6').click(() => {
+        var data = [6]
+        $.ajax({
+            url: '/color',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: (res) => {
+                console.log(res)
+            },
+            error: (res) => {
+                console.log(res)
+            }
+        })
+    })
+    $('#btn-7').click(() => {
+        var data = [7]
+        $.ajax({
+            url: '/color',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: (res) => {
+                console.log(res)
+            },
+            error: (res) => {
+                console.log(res)
+            }
+        })
+    })
+    $('#btn-8').click(() => {
+        var data = [8]
+        $.ajax({
+            url: '/color',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: (res) => {
+                console.log(res)
+            },
+            error: (res) => {
+                console.log(res)
+            }
+        })
+    })
 })
+
+

@@ -86,7 +86,7 @@
             <div class="color-top">
               <ul>
                 <% for(var i=0; i < color.length; i++) { %>
-                <li><a href="#"><i style="background:<%= color[i].Farbe %>;"></i></a></li>
+                <li><button style="background:<%= color[i].Farbe %>;padding:10px;" id="btn-<%= i+1 %>"></button></li>
                 <% } %> 
               </ul>
             </div>
