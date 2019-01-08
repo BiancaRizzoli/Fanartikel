@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 07. Jan 2019 um 09:21
+-- Erstellungszeit: 08. Jan 2019 um 22:16
 -- Server-Version: 10.1.37-MariaDB
 -- PHP-Version: 7.3.0
 
@@ -61,7 +61,11 @@ INSERT INTO `artikel` (`Bezeichnung`, `ArtID`, `BildShownFirst`, `BildShownSecon
 ('Tardis Shirt', 14, 'Tardis-Shirt1.jpg', 'Tardis-Shirt2.jpg', '15.00', 1, 1),
 ('Slytherin Shirt', 15, 'Slytherin-Shirt1.jpg', 'Slytherin-Shirt2.jpg', '15.00', 1, 4),
 ('Slytherin Schlafanzug', 16, 'Slytherin-Schlafanzug1.jpg', 'Slytherin-Schlafanzug2.jpg', '34.90', 1, 4),
-('Tardis - Phone Case', 17, 'PhoneCase1.jpg', NULL, '2.99', 1, 2);
+('Tardis - Phone Case', 17, 'PhoneCase1.jpg', NULL, '2.99', 1, 2),
+('Das Eine Kissen', 18, 'Das-Eine-Kissen1.jpg', 'Das-Eine-Kissen2.jpg', '24.90', 1, 6),
+('Hogwarts Wappen Kulturtasche', 19, 'Hogwarts-Wappen-Kulturtasche1.jpg', 'Hogwarts-Wappen-Kulturtasche2.jpg', '24.90', 1, 6),
+('Hogwarts Wappen Sweater', 20, 'Hogwarts-Wappen-Sweater1.jpg', 'Hogwarts-Wappen-Sweater1.jpg', '34.90', 1, 6),
+('Harry Potter und das verwunschene Kind', 21, 'Harry-Potter-Cursed-Child1.jpg', NULL, '19.99', 1, 7);
 
 -- --------------------------------------------------------
 
@@ -97,7 +101,11 @@ INSERT INTO `artikelfandoms` (`ArtFandomID`, `ArtID`, `FandomID`) VALUES
 (15, 14, 1),
 (16, 15, 2),
 (17, 16, 2),
-(18, 17, 1);
+(18, 17, 1),
+(19, 18, 4),
+(20, 19, 2),
+(21, 20, 2),
+(22, 21, 2);
 
 -- --------------------------------------------------------
 
@@ -132,7 +140,11 @@ INSERT INTO `artikelkategorien` (`KatID`, `ArtID`, `ArtKatID`) VALUES
 (1, 14, 14),
 (1, 15, 15),
 (1, 16, 16),
-(5, 17, 17);
+(5, 17, 17),
+(5, 18, 18),
+(5, 19, 19),
+(1, 20, 20),
+(5, 21, 21);
 
 -- --------------------------------------------------------
 
@@ -362,19 +374,19 @@ ALTER TABLE `waehrungen`
 -- AUTO_INCREMENT für Tabelle `artikel`
 --
 ALTER TABLE `artikel`
-  MODIFY `ArtID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `ArtID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT für Tabelle `artikelfandoms`
 --
 ALTER TABLE `artikelfandoms`
-  MODIFY `ArtFandomID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `ArtFandomID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT für Tabelle `artikelkategorien`
 --
 ALTER TABLE `artikelkategorien`
-  MODIFY `ArtKatID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `ArtKatID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT für Tabelle `benutzer`
