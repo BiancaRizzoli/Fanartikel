@@ -101,7 +101,7 @@
             <div class=" grid-product ">
               <figure>
                 <a href="single.html">
-                  <% if(!rows){ %>
+                  <% if(rows[i].BildShownSecond !== null){ %>
                   <div class="grid-img">
                     <img src="/images/<%= rows[i].BildShownSecond %>" class="img-responsive" alt="">
                   </div>
