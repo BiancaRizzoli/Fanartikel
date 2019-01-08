@@ -22,11 +22,4 @@ function isAuthenticated(req, res, next) {
     res.redirect('/login')
   }
 
-// Logout
-router.get('/logout', (req, res) => {
-    req.flash('success', 'Abgemeldet')
-    req.logout();
-    res.redirect('/login');
-  });
-
 module.exports = router;

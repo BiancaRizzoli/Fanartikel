@@ -72,14 +72,32 @@ router.post('/upload', (req, res) => {
     currency = 1
   }
 
+  if (req.body.color === 'Schwarz') {
+    color = 1
+  } else if (req.body.color === 'Weiß') {
+    color = 2
+  } else if (req.body.color === 'Blau') {
+    color = 3
+  } else if (req.body.color === 'Grün') {
+    color = 4
+  } else  if (req.body.color === 'Braun') {
+    color = 5
+  } else if (req.body.color === 'Rot') {
+    color = 6
+  } else if (req.body.color === 'Gelb') {
+    color = 7
+  } else if (req.body.color === 'Grau') {
+    color = 8
+  }
+
   var file1 = req.files.pic1
   var file2 = req.files.pic2
   file1.mv(path.join(__dirname, '../public/images/', req.files.pic1.name), (err) => {
     if (!err) {
       file2.mv(path.join(__dirname, '../public/images/', req.files.pic2.name), (err) => {
         if (!err) {
-          var sql = 'INSERT INTO artikel (Bezeichnung, BildShownFirst, BildShownSecond, Preis, WaehrungsID) VALUES ?'
-          var values = [[req.body.text, req.files.pic1.name, req.files.pic2.name, req.body.price, currency]]
+          var sql = 'INSERT INTO artikel (Bezeichnung, BildShownFirst, BildShownSecond, Preis, WaehrungsID, FarbID) VALUES ?'
+          var values = [[req.body.text, req.files.pic1.name, req.files.pic2.name, req.body.price, currency, color]]
           con.query(sql, [values], (err) => {
             if (err) {
               req.flash('danger', 'INSERT Error')
