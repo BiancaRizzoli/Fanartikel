@@ -89,18 +89,24 @@ router.post('/color', (req, res) => {
         if (!err) {
           var daddy = []
           var mommy = []
+          var son = []
+          var sister = []
+          for (var i = 0; i < arr.length; i++) {
+            sister.push(arr[i].ArtID)
+          } 
+          son.push(sister)
           for (var i = 0; i < del.length; i++) {
             daddy.push(del[i].ArtID)
           }
           for (var i = 0; i < arr.length; i++) {
             mommy.push(arr[i].ArtID)
-          }
+          } 
           for (var i = 0; i < daddy.length; i++) {
             var index = mommy.indexOf(daddy[i])
             mommy.splice(index, 1)
           }
-          console.log(mommy)
-          res.send(mommy)
+          son.push(mommy)
+          res.send(son)
         } else {
           res.send('500: Something broke')
         }
