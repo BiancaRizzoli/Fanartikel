@@ -3,6 +3,7 @@ var router = express.Router();
 var mysql = require('mysql')
 var fileUpload = require('express-fileupload')
 var path = require('path')
+var fs = require('fs')
 
 var con = mysql.createPool({
   connectionLimit: 1,
@@ -80,7 +81,7 @@ router.post('/upload', (req, res) => {
     color = 3
   } else if (req.body.color === 'Grün') {
     color = 4
-  } else  if (req.body.color === 'Braun') {
+  } else if (req.body.color === 'Braun') {
     color = 5
   } else if (req.body.color === 'Rot') {
     color = 6
@@ -100,20 +101,20 @@ router.post('/upload', (req, res) => {
           var values = [[req.body.text, req.files.pic1.name, req.files.pic2.name, req.body.price, currency, color]]
           con.query(sql, [values], (err) => {
             if (err) {
-              req.flash('danger', 'INSERT Error')
+              req.flash('danger', err.message)
               res.redirect('/dashboard')
             } else {
               var sql = 'SELECT ArtID FROM `artikel` WHERE Bezeichnung = ?'
               con.query(sql, [req.body.text], (err, result) => {
                 if (err) {
-                  req.flash('danger', 'SELECT Error')
+                  req.flash('danger', err.message)
                   res.redirect('/dashboard')
                 } else {
                   var sql = 'INSERT INTO artikelkategorien (KatID, ArtID) VALUES ?'
                   var values = [[req.body.category, result[0].ArtID]]
                   con.query(sql, [values], (err) => {
                     if (err) {
-                      req.flash('danger', 'INSERT Error')
+                      req.flash('danger', err.message)
                       res.redirect('/dashboard')
                     } else {
                       req.flash('success', 'Produkt hinzugefügt')
@@ -137,15 +138,14 @@ router.post('/upload', (req, res) => {
 })
 
 router.post('/delete', (req, res) => {
-  console.log(req.body)
   var deletesql = 'DELETE FROM artikel WHERE ArtID IN (?)'
   con.query(deletesql, [req.body], (err) => {
     if (err) {
-      req.flash('danger', 'DELETE Error')
-      res.send('WRONG')
+      req.flash('danger', err.message)
+      res.send('Error')
     } else {
-      req.flash('success', 'Produkt gelöscht')
-      res.send('OK')
+      req.flash('success', 'Produkt(e) gelöscht')
+      res.send('ok')
     }
   })
 })
@@ -175,7 +175,7 @@ router.post('/userremove', (req, res) => {
     var sql = 'DELETE FROM benutzer WHERE Benutzername = ?'
     con.query(sql, [req.body.userremove], (err) => {
       if (err) {
-        req.flash('warning', 'Error')
+        req.flash('warning', err.message)
         res.redirect('/dashboard')
       } else {
         req.flash('success', 'Benutzer gelöscht')
