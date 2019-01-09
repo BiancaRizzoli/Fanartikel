@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 08. Jan 2019 um 22:16
+-- Erstellungszeit: 09. Jan 2019 um 09:19
 -- Server-Version: 10.1.37-MariaDB
 -- PHP-Version: 7.3.0
 
@@ -169,7 +169,8 @@ CREATE TABLE `benutzer` (
 --
 
 INSERT INTO `benutzer` (`Vorname`, `Nachname`, `Adresse`, `Postleitzahl`, `Ort`, `Benutzername`, `Passwort`, `BenID`, `StatusID`) VALUES
-('Bianca', 'Rizzoli', 'Hans-Schaudig-Str.36', 87600, 'Kaufbeuren', 'brizzoli', '$2a$10$sQR8713CdfFXA5gf4K/H9OWccfl1fO9bR9BPu2ikjMXZx52LF66M2', 1, 1);
+('Bianca', 'Rizzoli', 'Hans-Schaudig-Str.36', 87600, 'Kaufbeuren', 'brizzoli', '$2a$10$sQR8713CdfFXA5gf4K/H9OWccfl1fO9bR9BPu2ikjMXZx52LF66M2', 1, 1),
+('q', 'q', 'q', 3, 'q', 'mapennig', '$2a$10$3eYKEV.D7V/imMHqtFj2RePbc6LP845F5SuFAV2mqQObMp7RDWIHq', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -392,7 +393,7 @@ ALTER TABLE `artikelkategorien`
 -- AUTO_INCREMENT für Tabelle `benutzer`
 --
 ALTER TABLE `benutzer`
-  MODIFY `BenID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `BenID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT für Tabelle `benutzerwunschliste`

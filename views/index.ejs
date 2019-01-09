@@ -54,9 +54,8 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <p><a href="products.html"><img src="/images/Doctor_Who_logo_2014.png" class=mydropdownimages></a></p>
-              <p><a href="products.html"><img src="/images/Harry_Potter_logo_klein.png" class=mydropdownimages></a></p>
-              <p><a href="products.html">Supernatural</a></p>
-              <p><a href="products.html">Der Herr der Ringe</a></p>
+              <p><a href="products.html"><img src="/images/harry-potter-logo-png-transparent.png" style="height: 35px" class=mydropdownimages></a></p>
+              <p><a href="products.html"><img src="/images/der-herr-der-ringe-logo-png-transparent.png" class=mydropdownimages></a></p>
             </div>
           </li>
         </ul>
@@ -72,7 +71,7 @@
             <h3>Categories</h3>
             <ul class="cate">
               <% for(var i=0; i < categories.length; i++) { %>
-              <li><i class="glyphicon glyphicon-menu-right"></i><button id="btn-<%= categories[i].Kategorie %>"><%= categories[i].Kategorie %></button><span>(<%= categories[i].Anzahl %>)</span></li>
+              <li><i class="glyphicon glyphicon-menu-right"></i><button class="categoriesbtn" id="btn-<%= categories[i].Kategorie %>"><%= categories[i].Kategorie %></button><span>(<%= categories[i].Anzahl %>)</span></li>
              <% } %> 
             </ul>
             </div>
@@ -86,7 +85,7 @@
             <div class="color-top">
               <ul>
                 <% for(var i=0; i < color.length; i++) { %>
-                <li><button style="background:<%= color[i].Farbe %>;padding:10px;" id="btn-<%= i+1 %>"></button></li>
+                <li><button class="colorbtn" style="background:<%= color[i].Farbe %>;" id="btn-<%= i+1 %>"></button></li>
                 <% } %> 
               </ul>
             </div>

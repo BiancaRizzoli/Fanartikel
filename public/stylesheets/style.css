@@ -210,7 +210,27 @@ ul.column-dropdown h6 {
 .mydropdownimages{
     height: auto;
     width: auto;
+    margin: 5px;
 }
+
+.categoriesbtn{
+    margin: 3px;
+    border: none;
+    background-color: white;
+    color: black;
+}
+
+.categoriesbtn:hover{
+    color: #01CFCF;
+}
+
+.colorbtn{
+    border-color: rgb(195, 198, 201);
+    border-width: 1px;
+    margin: 3px;
+    padding:15px;
+}
+
 /*-- //header --*/
 /*-- banner section --*/
 #slideshow-controller {
