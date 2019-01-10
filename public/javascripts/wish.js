@@ -1,5 +1,5 @@
 function addWish(ArtID) {
-    var daddy = {ArtikelID: ArtID}
+    var daddy = { ArtikelID: ArtID }
     $.ajax({
         url: '/wishlist',
         type: 'POST',
@@ -8,12 +8,57 @@ function addWish(ArtID) {
         dataType: 'json',
         success: (res) => {
             if (res.sherlock) {
-                var element = document.getElementById('a'+daddy.ArtikelID)
+                var element = document.getElementById('a' + daddy.ArtikelID)
                 element.classList.remove("red")
-            } else { 
-                var element = document.getElementById('a'+daddy.ArtikelID)
+                if (document.getElementsByClassName('alert')) {
+                    $(".alert").alert('close')
+                    $('body').after('<div style="position: fixed;bottom: 5px;left: 10px;" class="alert alert-' + res.type + ' alert-dismissible fade show text-center" role="alert">' + res.message + '.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>')
+                    setTimeout(() => {
+                        $(".alert").alert('close')
+                    }, 2000);
+                } else {
+                    $('body').after('<div style="position: fixed;bottom: 5px;left: 10px;" class="alert alert-' + res.type + ' alert-dismissible fade show text-center" role="alert">' + res.message + '.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>')
+                    setTimeout(() => {
+                        $(".alert").alert('close')
+                    }, 2000);
+                }
+            } else {
+                var element = document.getElementById('a' + daddy.ArtikelID)
                 element.classList.add("red")
+                if (document.getElementsByClassName('alert')) {
+                    $(".alert").alert('close')
+                    $('body').after('<div style="position: fixed;bottom: 5px;left: 10px;" class="alert alert-' + res.type + ' alert-dismissible fade show text-center" role="alert">' + res.message + '.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>')
+                    setTimeout(() => {
+                        $(".alert").alert('close')
+                    }, 2000);
+                } else {
+                    $('body').after('<div style="position: fixed;bottom: 5px;left: 10px;" class="alert alert-' + res.type + ' alert-dismissible fade show text-center" role="alert">' + res.message + '.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>')
+                    setTimeout(() => {
+                        $(".alert").alert('close')
+                    }, 2000);
+                }
             }
+        },
+        error: () => {
+            console.log('Error')
+        }
+    })
+}
+
+function removeWish(ArtID) {
+    var mommy = { ArtikelID: ArtID }
+    $.ajax({
+        url: 'wishlist/remove',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(mommy),
+        dataType: 'json',
+        success: (res) => {
+            document.getElementById(mommy.ArtikelID).style.display = 'none'
+            $('body').after('<div style="position: fixed;bottom: 5px;left: 10px;" class="alert alert-' + res.type + ' alert-dismissible fade show text-center" role="alert">' + res.message + '.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>')
+            setTimeout(() => {
+                $(".alert").alert('close')
+            }, 5000);
         },
         error: (res) => {
             console.log('Error')

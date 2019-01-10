@@ -28,6 +28,7 @@ router.get('/', isAuthenticated, (req, res) => {
   })
 });
 
+// Add things to wishlist
 router.post('/', (req, res) => {
   var sql = 'SELECT BenID FROM benutzer WHERE Benutzername = ?'
   con.query(sql, [req.user.Benutzername], (err, result) => {
@@ -43,9 +44,9 @@ router.post('/', (req, res) => {
             var sql = 'DELETE FROM benutzerwunschliste WHERE BenID = ? AND ArtID = ?'
             con.query(sql, [result[0].BenID, req.body.ArtikelID], (err) => {
               if (err) {
-                res.send({ message: 'DELETE Error' })
+                res.send({ message: 'DELETE Error', type: 'danger' })
               } else {
-                res.send({ message: 'Artikel gelöscht', ArtikelID: req.body.ArtikelID, sherlock: true })
+                res.send({ message: 'Artikel gelöscht', type: 'danger', sherlock: true })
               }
             })      
           } else {
@@ -53,9 +54,9 @@ router.post('/', (req, res) => {
             var values = [[result[0].BenID, req.body.ArtikelID]]
             con.query(sql, [values], (err) => {
               if (err) {
-                res.send({ message: 'INSERT Error' })
+                res.send({ message: 'INSERT Error', type: 'danger'  })
               } else {
-                res.send({ message: 'Artikel hinzugefügt', ArtikelID: req.body.ArtikelID, sherlock: false })
+                res.send({ message: 'Artikel hinzugefügt', type: 'success', sherlock: false })
               }
             })      
           }
@@ -65,6 +66,16 @@ router.post('/', (req, res) => {
   })
 })
 
+router.post('/remove', (req, res) => {
+  var sql = 'DELETE FROM benutzerwunschliste WHERE ArtID = ? AND BenID = (SELECT BenID FROM benutzer WHERE Benutzername = ?)'
+  con.query(sql, [req.body.ArtikelID, req.user.Benutzername], (err)=> {
+    if (err) {
+      res.send({message: 'DELETE Error', type: 'danger'})
+    } else {
+      res.send({message: 'Artikel gelöscht', type: 'danger'})
+    }
+  })
+})
 
 // Authentication 
 function isAuthenticated(req, res, next) {
