@@ -44,20 +44,39 @@ router.get('/', isAuthenticated, (req, res) => {
 
 router.post('/', (req, res) => {
   var sql = 'SELECT BenID FROM benutzer WHERE Benutzername = ?'
-  console.log(req.user.Benutzername)
-  con.query(sql, [req.user.Benutzername], (err, result) =>{
+  con.query(sql, [req.user.Benutzername], (err, result) => {
     if (err) {
-      res.send({message: 'SELECT Error'})
+      res.send({ message: 'SELECT Error' })
     } else {
-      var sql = 'INSERT INTO benutzerwunschliste(BenID, ArtID) VALUES ?'
+      var sql = 'SELECT BenID, ArtID FROM benutzerwunschliste WHERE BenID = ? AND ArtID = ?'
       var values = [[result[0].BenID, req.body.ArtikelID]]
-      con.query(sql, [values], (err) => {
+      con.query(sql, [values], (err, exist) => {
         if (err) {
-          res.send({message: 'INSERT Error'})
+          res.send({ message: 'EXIST Error' })
         } else {
-          res.send({message: 'Artikel hinzugefügt'})
+          if (exist[0].length > 0) {
+            var sql = 'DELETE FROM benutzerwunschliste WHERE BenID = ? AND ArtID = ?'
+            var values = [[result[0].BenID, req.body.ArtikelID]]
+            con.query(sql, [values], (err) => {
+              if (err) {
+                res.send({ message: 'DELETE Error' })
+              } else {
+                res.send({ message: 'Artikel gelöscht', ArtikelID: req.body.ArtikelID, sherlock: true })
+              }
+            })      
+          } else {
+            var sql = 'INSERT INTO benutzerwunschliste(BenID, ArtID) VALUES ?'
+            var values = [[result[0].BenID, req.body.ArtikelID]]
+            con.query(sql, [values], (err) => {
+              if (err) {
+                res.send({ message: 'INSERT Error' })
+              } else {
+                res.send({ message: 'Artikel hinzugefügt', ArtikelID: req.body.ArtikelID, sherlock: false })
+              }
+            })      
+          }
         }
-      })    
+      })
     }
   })
 })

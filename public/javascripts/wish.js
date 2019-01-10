@@ -7,7 +7,13 @@ function addWish(ArtID) {
         data: JSON.stringify(daddy),
         dataType: 'json',
         success: (res) => {
-            console.log(res.message)
+            if (res.sherlock) {
+                var element = document.getElementById(res.ArtikelID)
+                element.classList.remove("red")
+            } else {
+                var element = document.getElementById(res.ArtikelID)
+                element.classList.add("red")
+            }
         },
         error: (res) => {
             console.log('Error')
