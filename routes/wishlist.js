@@ -11,8 +11,8 @@ var con = mysql.createPool({
 });
 
 router.get('/', isAuthenticated, (req, res) => {
-  var sql = 'SELECT a.ArtID, a.Bezeichnung, a.Preis, a.BildShownFirst, a.BildShownSecond, a.FarbID, w.Waehrung FROM artikel as a JOIN waehrungen as w ON a.WaehrungsID = w.WaehrungsID'
-  con.query(sql, (err, result) => {
+  var sql = 'SELECT a.ArtID, a.Bezeichnung, a.Preis, a.BildShownFirst, a.BildShownSecond, a.FarbID, w.Waehrung FROM artikel as a JOIN waehrungen as w ON a.WaehrungsID = w.WaehrungsID JOIN benutzerwunschliste as b ON b.ArtID = a.ArtID WHERE b.BenID = (SELECT BenID FROM benutzer WHERE Benutzername = ?)'
+  con.query(sql,[req.user.Benutzername], (err, result) => {
     if (err) {
       res.send('500: Something broke');
     } else {
@@ -21,21 +21,7 @@ router.get('/', isAuthenticated, (req, res) => {
         if (err) {
           res.send('500: Something broke');
         } else {
-          var sql = 'select k.Kategorie, Count(a.ArtID) AS Anzahl FROM kategorien as k JOIN artikelkategorien as a ON k.KatID = a.KatID Group By k.Kategorie'
-          con.query(sql, (err, categories) => {
-            if (err) {
-              res.send('500: Something broke');
-            } else {
-              var sql = 'select Farbe from farben'
-              con.query(sql, (err, color) => {
-                if (err) {
-                  res.send('500: Something broke');
-                } else {
-                  res.render('wishlist', { rows: result, user: user, categories: categories, color: color });
-                }
-              })
-            }
-          })
+          res.render('wishlist', { rows: result, user: user });
         }
       })
     }
