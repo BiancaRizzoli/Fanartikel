@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Fanarti</title>
+  <title>Wunschliste</title>
   <link rel="shortcut icon" type="image/x-icon" href="/images/Icon.png">
   <!-- CSS -->
   <link href="/stylesheets/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
@@ -28,7 +28,7 @@
   <!--banner-->
   <div class="banner-top">
     <div class="container">
-      <h2 class="animated wow fadeInLeft" data-wow-delay=".5s">Fanartikel</h2>
+      <h2 class="animated wow fadeInLeft" data-wow-delay=".5s">Wunschliste</h2>
       <div class="clearfix"> </div>
     </div>
   </div>
@@ -42,7 +42,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/wishlist">Wunschliste</a>
@@ -64,36 +64,8 @@
   </nav>
   <div class="product">
     <div class="container">
-      <div class="filter">
-        <div class="col product-bottom">
-          <!--categories-->
-          <div class="categories animated wow fadeInUp animated" data-wow-delay=".5s">
-            <h3>Categories</h3>
-            <ul class="cate">
-              <% for(var i=0; i < categories.length; i++) { %>
-              <li><i class="glyphicon glyphicon-menu-right"></i><button class="categoriesbtn" id="btn-<%= categories[i].Kategorie %>"><%= categories[i].Kategorie %></button><span>(<%= categories[i].Anzahl %>)</span></li>
-             <% } %> 
-            </ul>
-            </div>
 
-
-          <!--//menu-->
-          <!--colors-->
-          <div class="colors animated wow fadeInLeft animated" data-wow-delay=".5s">
-            <h3>Colors</h3>
-
-            <div class="color-top">
-              <ul>
-                <% for(var i=0; i < color.length; i++) { %>
-                <li><button class="colorbtn" style="background:<%= color[i].Farbe %>;" id="btn-<%= i+1 %>"></button></li>
-                <% } %> 
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="productlist animated wow fadeInRight" data-wow-delay=".5s">
+      <div class="productlist animated wow fadeInRight" data-wow-delay=".5s" style="width:-webkit-fill-available">
         <% for(var i=0; i < rows.length; i++) { %>
         <div class="col item-grid simpleCart_shelfItem" style="width: 200px;float: left;margin: 10px;padding:0px" id="<%= rows[i].ArtID %>">
           <div class="grid-pro" style="width:200px; margin: auto">
