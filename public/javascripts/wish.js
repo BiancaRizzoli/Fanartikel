@@ -8,10 +8,10 @@ function addWish(ArtID) {
         dataType: 'json',
         success: (res) => {
             if (res.sherlock) {
-                var element = document.getElementById(res.ArtikelID)
+                var element = document.getElementById('a'+daddy.ArtikelID)
                 element.classList.remove("red")
-            } else {
-                var element = document.getElementById(res.ArtikelID)
+            } else { 
+                var element = document.getElementById('a'+daddy.ArtikelID)
                 element.classList.add("red")
             }
         },

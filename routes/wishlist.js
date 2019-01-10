@@ -49,15 +49,13 @@ router.post('/', (req, res) => {
       res.send({ message: 'SELECT Error' })
     } else {
       var sql = 'SELECT BenID, ArtID FROM benutzerwunschliste WHERE BenID = ? AND ArtID = ?'
-      var values = [[result[0].BenID, req.body.ArtikelID]]
-      con.query(sql, [values], (err, exist) => {
+      con.query(sql, [result[0].BenID, req.body.ArtikelID], (err, exist) => {
         if (err) {
           res.send({ message: 'EXIST Error' })
         } else {
-          if (exist[0].length > 0) {
+          if (exist.length > 0) {
             var sql = 'DELETE FROM benutzerwunschliste WHERE BenID = ? AND ArtID = ?'
-            var values = [[result[0].BenID, req.body.ArtikelID]]
-            con.query(sql, [values], (err) => {
+            con.query(sql, [result[0].BenID, req.body.ArtikelID], (err) => {
               if (err) {
                 res.send({ message: 'DELETE Error' })
               } else {
