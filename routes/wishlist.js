@@ -43,16 +43,32 @@ router.get('/', isAuthenticated, (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  
+  var sql = 'SELECT BenID FROM benutzer WHERE Benutzername = ?'
+  console.log(req.user.Benutzername)
+  con.query(sql, [req.user.Benutzername], (err, result) =>{
+    if (err) {
+      res.send({message: 'SELECT Error'})
+    } else {
+      var sql = 'INSERT INTO benutzerwunschliste(BenID, ArtID) VALUES ?'
+      var values = [[result[0].BenID, req.body.ArtikelID]]
+      con.query(sql, [values], (err) => {
+        if (err) {
+          res.send({message: 'INSERT Error'})
+        } else {
+          res.send({message: 'Artikel hinzugefügt'})
+        }
+      })    
+    }
+  })
 })
 
 
 // Authentication 
 function isAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
-      return next();
-    }
-    res.redirect('/login')
+  if (req.isAuthenticated()) {
+    return next();
   }
+  res.redirect('/login')
+}
 
 module.exports = router;

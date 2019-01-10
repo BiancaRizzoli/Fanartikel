@@ -20,6 +20,7 @@
   <script src="/javascripts/wow.min.js"></script>
   <script type="text/javascript" src="/javascripts/bootstrap.js"></script>
   <script src="/javascripts/filter.js"></script>
+  <script src="/javascripts/wish.js"></script>
 </head>
 
 <body>
@@ -113,13 +114,13 @@
             </div>
             <div class="women">
               <div class="bezeichnung">
-                <h6><a href="single.html">
-                    <%= rows[i].Bezeichnung %></a></h6>
+                <h6>
+                    <%= rows[i].Bezeichnung %></h6>
               </div>
               <p><em class="item_price">
                   <%= rows[i].Preis %> <%= rows[i].Waehrung %></em></p>
               <p><a href="#" data-text="Add To Cart" class="but-hover1 item_add">Add To Cart</a></p>
-              <a href="#" class="wishheart"><img src="/images/ll.png" alt=""></a>
+              <a class="wishheart"><img id="<%= rows[i].ArtID %>" onclick="addWish(<%= rows[i].ArtID %>)" src="/images/ll.png" alt=""></a>
             </div>
           </div>
         </div>
