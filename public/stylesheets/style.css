@@ -550,6 +550,11 @@ em.item_price {
 	text-decoration:none;
 }
 
+.red,
+{
+    -webkit-filter: opacity(.5) drop-shadow(0 0 0 red);
+}
+
 .but-hover1:hover {
 	line-height: 7.4em;
 }
