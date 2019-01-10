@@ -31,7 +31,7 @@ router.get('/', isAuthenticated, (req, res) => {
                 if (err) {
                   res.send('500: Something broke');
                 } else {
-                  res.render('index', { rows: result, user: user, categories: categories, color: color });
+                  res.render('wishlist', { rows: result, user: user, categories: categories, color: color });
                 }
               })
             }
@@ -41,6 +41,10 @@ router.get('/', isAuthenticated, (req, res) => {
     }
   })
 });
+
+router.post('/', (req, res) => {
+  
+})
 
 
 // Authentication 
