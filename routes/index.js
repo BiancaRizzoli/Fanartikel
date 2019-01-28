@@ -27,12 +27,19 @@ router.get('/', isAuthenticated, (req, res) => {
             if (err) {
               res.send('500: Something broke');
             } else {
-              var sql = 'select Farbe from farben'
+              var sql = 'SELECT Farbe FROM farben'
               con.query(sql, (err, color) => {
                 if (err) {
                   res.send('500: Something broke');
                 } else {
-                  res.render('index', { rows: result, user: user, categories: categories, color: color });
+                  var sql = 'SELECT FandomID, Bild FROM fandoms'
+                  con.query(sql,(err, fan)=>{
+                    if (err) {
+                      res.send('500: Something broke');
+                    } else {
+                      res.render('index', { rows: result, user: user, categories: categories, color: color, fandom: fan });
+                    }
+                  })
                 }
               })
             }
@@ -85,7 +92,7 @@ router.post('/color', (req, res) => {
   con.query(sql, [req.body], (err, del) => {
     if (!err) {
       var sql = 'SELECT ArtID FROM artikel'
-      con.query(sql, (err, arr)=>{
+      con.query(sql, (err, arr) => {
         if (!err) {
           var daddy = []
           var mommy = []
@@ -93,14 +100,14 @@ router.post('/color', (req, res) => {
           var sister = []
           for (var i = 0; i < arr.length; i++) {
             sister.push(arr[i].ArtID)
-          } 
+          }
           son.push(sister)
           for (var i = 0; i < del.length; i++) {
             daddy.push(del[i].ArtID)
           }
           for (var i = 0; i < arr.length; i++) {
             mommy.push(arr[i].ArtID)
-          } 
+          }
           for (var i = 0; i < daddy.length; i++) {
             var index = mommy.indexOf(daddy[i])
             mommy.splice(index, 1)
@@ -113,6 +120,58 @@ router.post('/color', (req, res) => {
       })
     } else {
       res.send('500: Something broke')
+    }
+  })
+})
+
+router.post('/fandom', (req, res) => {
+  var sql = 'SELECT ArtID FROM artikel'
+  con.query(sql, (err, result) => {
+    if (err) {
+      res.send({error: err})
+    } else {
+      var sql = 'SELECT artikel.Bezeichnung, artikel.ArtID FROM artikel JOIN artikelfandoms ON artikel.ArtID = artikelfandoms.ArtID JOIN fandoms ON artikelfandoms.FandomID = fandoms.FandomID WHERE fandoms.FandomID =  ?'
+      con.query(sql, [req.body], (err, fandom) => {
+        if (err) {
+          res.send({error: err})
+        } else {
+          var daddy = []
+          var mommy = []
+          var son = []
+          var sister = []
+          for (var i = 0; i < result.length; i++) {
+            sister.push(result[i].ArtID)
+          }
+          son.push(sister)
+          for (var i = 0; i < fandom.length; i++) {
+            daddy.push(fandom[i].ArtID)
+          }
+          for (var i = 0; i < result.length; i++) {
+            mommy.push(result[i].ArtID)
+          }
+          for (var i = 0; i < daddy.length; i++) {
+            var index = mommy.indexOf(daddy[i])
+            mommy.splice(index, 1)
+          }
+          son.push(mommy)
+          res.send(son)
+        }
+      })
+    }
+  })
+})
+
+router.post('/reset', (req, res)=>{
+  var sql = 'SELECT ArtID FROM artikel'
+  con.query(sql, (err, result)=>{
+    if (err) {
+      res.send('Error')
+    } else {
+      var reset = []
+      for(var i= 0; i < result.length; i++) {
+        reset.push(result[i].ArtID)
+      }
+      res.send(reset)
     }
   })
 })
