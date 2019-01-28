@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 09. Jan 2019 um 09:19
+-- Erstellungszeit: 28. Jan 2019 um 09:40
 -- Server-Version: 10.1.37-MariaDB
 -- PHP-Version: 7.3.0
 
@@ -85,12 +85,10 @@ CREATE TABLE `artikelfandoms` (
 
 INSERT INTO `artikelfandoms` (`ArtFandomID`, `ArtID`, `FandomID`) VALUES
 (1, 1, 1),
-(2, 2, 6),
 (3, 3, 1),
 (4, 4, 1),
 (5, 5, 1),
 (6, 6, 2),
-(7, 6, 3),
 (8, 7, 2),
 (9, 8, 2),
 (10, 9, 2),
@@ -192,20 +190,18 @@ CREATE TABLE `benutzerwunschliste` (
 
 CREATE TABLE `fandoms` (
   `FandomID` int(11) NOT NULL,
-  `Fandom` varchar(255) DEFAULT NULL
+  `Fandom` varchar(255) DEFAULT NULL,
+  `Bild` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Daten für Tabelle `fandoms`
 --
 
-INSERT INTO `fandoms` (`FandomID`, `Fandom`) VALUES
-(1, 'Doctor Who'),
-(2, 'Harry Potter'),
-(3, 'Fantastic Beasts'),
-(4, 'Herr der Ringe'),
-(5, 'Sherlock'),
-(6, 'Supernatural');
+INSERT INTO `fandoms` (`FandomID`, `Fandom`, `Bild`) VALUES
+(1, 'Doctor Who', 'Doctor_Who_logo_2014.png'),
+(2, 'Harry Potter', 'harry-potter-logo-png-transparent.png'),
+(4, 'Herr der Ringe', 'der-herr-der-ringe-logo-png-transparent.png');
 
 -- --------------------------------------------------------
 
@@ -399,7 +395,7 @@ ALTER TABLE `benutzer`
 -- AUTO_INCREMENT für Tabelle `benutzerwunschliste`
 --
 ALTER TABLE `benutzerwunschliste`
-  MODIFY `WunschID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `WunschID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT für Tabelle `fandoms`
