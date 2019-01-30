@@ -48,15 +48,15 @@
           <li class="nav-item">
             <a class="nav-link" href="/wishlist">Wunschliste</a>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown">  
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
               Fandoms
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <p><a href="products.html"><img src="/images/Doctor_Who_logo_2014.png" class=mydropdownimages></a></p>
-              <p><a href="products.html"><img src="/images/harry-potter-logo-png-transparent.png" style="height: 35px" class=mydropdownimages></a></p>
-              <p><a href="products.html"><img src="/images/der-herr-der-ringe-logo-png-transparent.png" class=mydropdownimages></a></p>
+            <% for(var i=0; i < fandom.length; i++) { %>
+              <p><button onclick="fandom(<%= fandom[i].FandomID %>)" ><img src="/images/<%= fandom[i].Bild %>" style="height:15px;" class=mydropdownimages></button></p>
+              <% } %> 
             </div>
           </li>
         </ul>
@@ -69,6 +69,7 @@
         <div class="col product-bottom">
           <!--categories-->
           <div class="categories animated wow fadeInUp animated" data-wow-delay=".5s">
+            <button onclick="reset()">REEESET</button>
             <h3>Categories</h3>
             <ul class="cate">
               <% for(var i=0; i < categories.length; i++) { %>
