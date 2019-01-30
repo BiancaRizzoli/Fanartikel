@@ -45,7 +45,7 @@ passport.use('local', new LocalStrategy({
     var sql = 'SELECT Benutzername, Passwort FROM benutzer WHERE Benutzername = ?'
     con.query(sql, [username], (err, rows) => {
       if (err) {
-        return done(null, false, req.flash('danger', 'Datenbank offline!'));
+        return done(null, false, req.flash('danger', 'Password oder Benutzername falsch'));
       } else if (!rows.length) {
         return done(null, false, req.flash('danger', 'Password oder Benutzername falsch'));
       } else {
