@@ -557,6 +557,11 @@ em.item_price {
     text-decoration:none;
     cursor: pointer;
 }
+.cursor{}
+.cursor:hover,
+[class*="try-"]:hover {
+    cursor: pointer;
+}
 
 .red {
     color: red;

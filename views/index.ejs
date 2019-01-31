@@ -129,9 +129,9 @@
                   </em></p>
               <p><a href="#" data-text="Add To Cart" class="but-hover1 item_add">Add to Cart</a></p>
               <% if (ben.indexOf(rows[i].ArtID) !== -1) {  %>
-              <i id="a<%= rows[i].ArtID %>" onclick="addWish(<%= rows[i].ArtID %>)" class="material-icons red">favorite</i>
+              <i id="a<%= rows[i].ArtID %>" onclick="addWish(<%= rows[i].ArtID %>)" class="material-icons red cursor">favorite</i>
               <% } else { %>
-              <i id="a<%= rows[i].ArtID %>" onclick="addWish(<%= rows[i].ArtID %>)" class="material-icons">favorite</i>
+              <i id="a<%= rows[i].ArtID %>" onclick="addWish(<%= rows[i].ArtID %>)" class="material-icons cursor">favorite</i>
               <% } %>
             </div>
           </div>
