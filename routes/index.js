@@ -33,11 +33,22 @@ router.get('/', isAuthenticated, (req, res) => {
                   res.send('500: Something broke');
                 } else {
                   var sql = 'SELECT FandomID, Bild FROM fandoms'
-                  con.query(sql,(err, fan)=>{
+                  con.query(sql, (err, fan) => {
                     if (err) {
                       res.send('500: Something broke');
                     } else {
-                      res.render('index', { rows: result, user: user, categories: categories, color: color, fandom: fan });
+                      var sql = 'SELECT benutzerwunschliste.ArtID FROM benutzer JOIN benutzerwunschliste ON benutzerwunschliste.BenID = benutzer.BenID WHERE benutzer.Benutzername = ?'
+                      con.query(sql, [req.user.Benutzername], (err, ben) => {
+                        if (err) {
+                          res.send('500: Something broke');
+                        } else {
+                          var wish = []
+                          for (i in ben) {
+                            wish.push(ben[i].ArtID)
+                          }
+                          res.render('index', { rows: result, user: user, categories: categories, color: color, fandom: fan, ben: wish });
+                        }
+                      })
                     }
                   })
                 }
@@ -128,12 +139,12 @@ router.post('/fandom', (req, res) => {
   var sql = 'SELECT ArtID FROM artikel'
   con.query(sql, (err, result) => {
     if (err) {
-      res.send({error: err})
+      res.send({ error: err })
     } else {
       var sql = 'SELECT artikel.Bezeichnung, artikel.ArtID FROM artikel JOIN artikelfandoms ON artikel.ArtID = artikelfandoms.ArtID JOIN fandoms ON artikelfandoms.FandomID = fandoms.FandomID WHERE fandoms.FandomID =  ?'
       con.query(sql, [req.body], (err, fandom) => {
         if (err) {
-          res.send({error: err})
+          res.send({ error: err })
         } else {
           var daddy = []
           var mommy = []
@@ -161,14 +172,14 @@ router.post('/fandom', (req, res) => {
   })
 })
 
-router.post('/reset', (req, res)=>{
+router.post('/reset', (req, res) => {
   var sql = 'SELECT ArtID FROM artikel'
-  con.query(sql, (err, result)=>{
+  con.query(sql, (err, result) => {
     if (err) {
       res.send('Error')
     } else {
       var reset = []
-      for(var i= 0; i < result.length; i++) {
+      for (var i = 0; i < result.length; i++) {
         reset.push(result[i].ArtID)
       }
       res.send(reset)

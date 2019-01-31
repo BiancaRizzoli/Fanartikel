@@ -550,9 +550,8 @@ em.item_price {
 	text-decoration:none;
 }
 
-.red,
-{
-    -webkit-filter: opacity(.5) drop-shadow(0 0 0 red);
+.red {
+    color: red;
 }
 
 .but-hover1:hover {
