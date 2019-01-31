@@ -90,7 +90,7 @@
                     <%= rows[i].Bezeichnung %></h6>
               </div>
               <p><em class="item_price">
-                  <%= rows[i].Preis %> <%= rows[i].Waehrung %></em></p>
+                  <%= rows[i].Preis.toFixed(2) %> <%= rows[i].Waehrung %></em></p>
               <p><a href="#" data-text="Add To Cart" class="but-hover1 item_add">Add To Cart</a></p>
               <button onclick="removeWish(<%= rows[i].ArtID %>)" class="btn-danger">Löschen</button>
             </div>

@@ -72,7 +72,7 @@ router.post('/upload', (req, res) => {
   } else {
     currency = 1
   }
-
+  var color
   if (req.body.color === 'Schwarz') {
     color = 1
   } else if (req.body.color === 'Weiß') {
@@ -117,8 +117,19 @@ router.post('/upload', (req, res) => {
                       req.flash('danger', err.message)
                       res.redirect('/dashboard')
                     } else {
-                      req.flash('success', 'Produkt hinzugefügt')
-                      res.redirect('/dashboard')
+                      var sql = 'INSERT INTO artikelfandoms (ArtID, FandomID) VALUES ?'
+                      var values = [
+                        [result[0].ArtID, req.body.fandom]
+                      ]
+                      con.query(sql, [values], (err) => {
+                        if (err) {
+                          req.flash('danger', err.message)
+                          res.redirect('/dashboard')
+                        } else {
+                          req.flash('success', 'Produkt hinzugefügt')
+                          res.redirect('/dashboard')
+                        }
+                      })
                     }
                   })
                 }

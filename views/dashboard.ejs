@@ -91,6 +91,13 @@
                                     <option value="Grau">Grau</option>
                                 </select>
                             </div>
+                            <div class="input-group mb-3 w-25">
+                                <select class="form-control" name="fandom" required>
+                                    <option value="2">Harry Potter</option>
+                                    <option value="1">Doctor Who</option>
+                                    <option value="4">Herr der Ringe</option>
+                                </select>
+                            </div>
                             <div class="input-group">
                                 <button class="btn btn-success" type="submit">Hinzufügen</button>
                             </div>
@@ -127,7 +134,7 @@
                                         <%= rows[i].Bezeichnung %>
                                     </td>
                                     <td>
-                                        <%= rows[i].Preis %>
+                                        <%= rows[i].Preis.toFixed(2) %>
                                     </td>
                                     <td>
                                         <%= rows[i].Waehrung %>
