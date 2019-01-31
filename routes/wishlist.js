@@ -21,7 +21,14 @@ router.get('/', isAuthenticated, (req, res) => {
         if (err) {
           res.send('500: Something broke');
         } else {
-          res.render('wishlist', { rows: result, user: user });
+          var sql = 'SELECT FandomID, Bild FROM fandoms'
+          con.query(sql, (err) =>{
+            if (err) {
+              res.send('500: Something broke');
+            } else {
+              res.render('wishlist', { rows: result, user: user, fandom: fan });
+            }
+          })
         }
       })
     }
