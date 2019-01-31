@@ -13,6 +13,7 @@
   <link href="/stylesheets/animate.min.css" rel="stylesheet">
   <link href='//fonts.googleapis.com/css?family=Cabin:400,500,600,700' rel='stylesheet' type='text/css'>
   <link href='//fonts.googleapis.com/css?family=Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <!-- JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -48,7 +49,7 @@
           <li class="nav-item">
             <a class="nav-link" href="/wishlist">Wunschliste</a>
           </li>
-          <li class="nav-item dropdown">  
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
               Fandoms
@@ -74,10 +75,12 @@
             <ul class="cate">
               <li><i class="glyphicon glyphicon-menu-right"></i><button class="categoriesbtn" onclick="reset()">Alle Artikel</button></li>
               <% for(var i=0; i < categories.length; i++) { %>
-              <li><i class="glyphicon glyphicon-menu-right"></i><button class="categoriesbtn" onclick="category(<%= categories[i].KatID %>)"><%= categories[i].Kategorie %></button><span>(<%= categories[i].Anzahl %>)</span></li>
-             <% } %> 
+              <li><i class="glyphicon glyphicon-menu-right"></i><button class="categoriesbtn" onclick="category(<%= categories[i].KatID %>)">
+                  <%= categories[i].Kategorie %></button><span>(
+                  <%= categories[i].Anzahl %>)</span></li>
+              <% } %>
             </ul>
-            </div>
+          </div>
 
 
           <!--//menu-->
@@ -89,7 +92,7 @@
               <ul>
                 <% for(var i=0; i < color.length; i++) { %>
                 <li><button class="colorbtn" style="background:<%= color[i].Farbe %>;" onclick="color(<%= i+1 %>)"></button></li>
-                <% } %> 
+                <% } %>
               </ul>
             </div>
           </div>
@@ -117,12 +120,19 @@
             <div class="women">
               <div class="bezeichnung">
                 <h6>
-                    <%= rows[i].Bezeichnung %></h6>
+                  <%= rows[i].Bezeichnung %>
+                </h6>
               </div>
               <p><em class="item_price">
-                  <%= rows[i].Preis.toFixed(2) %> <%= rows[i].Waehrung %></em></p>
-              <p><a href="#" data-text="Add To Cart" class="but-hover1 item_add">Add To Cart</a></p>
-              <a class="wishheart"><img id="a<%= rows[i].ArtID %>" onclick="addWish(<%= rows[i].ArtID %>)" src="/images/ll.png" alt=""></a>
+                  <%= rows[i].Preis.toFixed(2) %>
+                  <%= rows[i].Waehrung %>
+                  </em></p>
+              <p><a href="#" data-text="Add To Cart" class="but-hover1 item_add">Add to Cart</a></p>
+              <% if (ben.indexOf(rows[i].ArtID) !== -1) {  %>
+              <i id="a<%= rows[i].ArtID %>" onclick="addWish(<%= rows[i].ArtID %>)" class="material-icons red">favorite</i>
+              <% } else { %>
+              <i id="a<%= rows[i].ArtID %>" onclick="addWish(<%= rows[i].ArtID %>)" class="material-icons">favorite</i>
+              <% } %>
             </div>
           </div>
         </div>

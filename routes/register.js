@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 })
 
 /* POST register */
-router.post('/', (req, res, next) => {
+router.post('/', (req, res) => {
   // Encrypt password
   bcrypt.genSalt(10, (err, salt) => {
     if (err) {

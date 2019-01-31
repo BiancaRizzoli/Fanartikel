@@ -558,9 +558,8 @@ em.item_price {
     cursor: pointer;
 }
 
-.red,
-{
-    -webkit-filter: opacity(.5) drop-shadow(0 0 0 red);
+.red {
+    color: red;
 }
 
 .but-hover1:hover {
