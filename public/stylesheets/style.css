@@ -220,6 +220,13 @@ ul.column-dropdown h6 {
     color: black;
 }
 
+.fandombtn{
+    margin: 3px;
+    border: none;
+    background-color: white;
+    color: black;
+}
+
 .categoriesbtn:hover{
     color: #01CFCF;
 }
@@ -547,7 +554,8 @@ em.item_price {
     filter: opacity(.5) drop-shadow(0 0 0 red);
 	background:rgba(1, 207, 207, 0);
 	color:#fff;
-	text-decoration:none;
+    text-decoration:none;
+    cursor: pointer;
 }
 
 .red {
@@ -1679,9 +1687,6 @@ span.span-1 {
 @media(max-width:1440px){
 .women h6 {
     font-size: 1.05em;
-}
-.dropdown-menu {
-    left: -330%;
 }
 .multi1 {
     left: -567%;
