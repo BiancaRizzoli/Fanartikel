@@ -54,10 +54,10 @@
               Fandoms
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <p><a href="products.html"><img src="/images/Doctor_Who_logo_2014.png" class=mydropdownimages></a></p>
-              <p><a href="products.html"><img src="/images/harry-potter-logo-png-transparent.png" style="height: 35px" class=mydropdownimages></a></p>
-              <p><a href="products.html"><img src="/images/der-herr-der-ringe-logo-png-transparent.png" class=mydropdownimages></a></p>
-            </div>
+              <% for(var i=0; i < fandom.length; i++) { %>
+                <p><button class="fandombtn" onclick="fandom(<%= fandom[i].FandomID %>)" ><img src="/images/<%= fandom[i].Bild %>" style="width:120px;" class=mydropdownimages></button></p>
+                <% } %> 
+              </div>
           </li>
         </ul>
       </div>

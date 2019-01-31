@@ -22,7 +22,7 @@ router.get('/', isAuthenticated, (req, res) => {
           res.send('500: Something broke');
         } else {
           var sql = 'SELECT FandomID, Bild FROM fandoms'
-          con.query(sql, (err) =>{
+          con.query(sql, (err, fan) =>{
             if (err) {
               res.send('500: Something broke');
             } else {
