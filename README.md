@@ -13,5 +13,6 @@ Konfiguration:
 Success!
 
 ToDo:
-- zweite Nachkommastelle anzeigen
+- Checkout
+- Filter
 
