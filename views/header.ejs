@@ -14,13 +14,12 @@
             <div class="cart box_1">
                 <a href="">
                     <h3>
-                        <div class="total">
-                            <span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span>
-                            items)</div>
+                        <div class="total" id="total">
+                             <span id="total"><%= session.price %></span></div>
                         <img src="/images/cart.png" alt="" />
                     </h3>
                 </a>
-                <p><a href="javascript:;" class="simpleCart_empty">Delete Sum</a></p>
+                <button onclick="addToCheckout()" class="simpleCart_empty">Delete Sum</button>
                 <div class="clearfix"> </div>
             </div>
         </div>

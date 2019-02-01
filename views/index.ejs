@@ -124,11 +124,11 @@
                   <%= rows[i].Bezeichnung %>
                 </h6>
               </div>
-              <p><em class="item_price" id="money">
+              <p><em class="item_price">
                   <%= rows[i].Preis.toFixed(2) %>
                   <%= rows[i].Waehrung %>
                   </em></p>
-              <p><a href="#" data-text="Add To Cart" class="but-hover1 item_add" id="schoolboy">Add to Cart</a></p>
+              <button onclick="addToCheckout(<%= rows[i].ArtID %>) data-text="Add To Cart" class="but-hover1 item_add">Add to Cart</button>
               <% if (ben.indexOf(rows[i].ArtID) !== -1) {  %>
               <i id="a<%= rows[i].ArtID %>" onclick="addWish(<%= rows[i].ArtID %>)" class="material-icons red cursor">favorite</i>
               <% } else { %>

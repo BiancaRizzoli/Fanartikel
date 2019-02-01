@@ -29,7 +29,7 @@ app.use(session({
   resave: true,
   saveUninitialized: true,
   secret: '$2y$12$E2gQVtc2nDvXLAR3wh7hd.Zti0ABNUq8OTohycyN7zIF8M4XdA0cG',
-  cookie: { maxAge: 999999999999 }
+  cookie: { maxAge: 999999999999 },
 }));
 app.use(flash());
 app.use(passport.initialize());
