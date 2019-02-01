@@ -128,7 +128,7 @@
                   <%= rows[i].Preis.toFixed(2) %>
                   <%= rows[i].Waehrung %>
                   </em></p>
-              <button onclick="addToCheckout(<%= rows[i].ArtID %>) data-text="Add To Cart" class="but-hover1 item_add">Add to Cart</button>
+        <p><a onclick="addToCheckout(<%= rows[i].ArtID %>)" data-text="Add To Cart" class="but-hover1 item_add">Add to Cart</a></p>
               <% if (ben.indexOf(rows[i].ArtID) !== -1) {  %>
               <i id="a<%= rows[i].ArtID %>" onclick="addWish(<%= rows[i].ArtID %>)" class="material-icons red cursor">favorite</i>
               <% } else { %>

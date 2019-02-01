@@ -46,8 +46,16 @@ router.get('/', isAuthenticated, (req, res) => {
                           for (i in ben) {
                             wish.push(ben[i].ArtID)
                           }
-                          req.session.price = 0
-                          res.render('index', { rows: result, user: user, categories: categories, color: color, fandom: fan, ben: wish, session: req.session.price });
+                          var sess
+                          if (req.session.price) {
+                            sess = req.session.price
+                            sess.toFixed(2)
+                          } else {
+                            sess = 0
+                            sess.toFixed(2)
+                          }
+                          sess = sess+' €'
+                          res.render('index', { rows: result, user: user, categories: categories, color: color, fandom: fan, ben: wish, session: sess });
                         }
                       })
                     }
@@ -200,7 +208,6 @@ router.post('/checkout', (req, res) => {
         } else {
           req.session.price += price[0].Preis
         }
-        console.log(req.session)
         res.send({price: req.session.price.toFixed(2)})
       }
     })  

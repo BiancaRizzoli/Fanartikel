@@ -62,16 +62,7 @@ function isAuthenticated(req, res, next) {
 
 router.use(fileUpload());
 router.post('/upload', (req, res) => {
-  var currency
-  if (req.body.currency == 'EURO') {
-    currency = 1
-  } else if (req.body.currency == 'DOLLAR') {
-    currency = 2
-  } else if (req.body.currency == 'PFUND') {
-    currency = 3
-  } else {
-    currency = 1
-  }
+  var currency = 1
   var color
   if (req.body.color === 'Schwarz') {
     color = 1
