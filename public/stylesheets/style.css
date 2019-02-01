@@ -563,6 +563,12 @@ em.item_price {
     cursor: pointer;
 }
 
+.responsive {
+    width: 100%;
+    height: auto;
+    margin: 10px;
+  }
+
 .red {
     color: red;
 }
