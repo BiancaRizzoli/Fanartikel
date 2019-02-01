@@ -84,11 +84,11 @@ router.post('/category', (req, res) => {
           var myWillToLive = []
           var myGrades = []
           var daddy = []
-          var test = []
-          for (var i = 0; i < allID.length; i++) {
+          //var test = []
+          /*for (var i = 0; i < allID.length; i++) {
             test.push(allID[i].ArtID)
           }
-          daddy.push(test)
+          daddy.push(test)*/
           for (var i = 0; i < allID.length; i++) {
             myWillToLive.push(allID[i].ArtID)
           }
@@ -100,7 +100,8 @@ router.post('/category', (req, res) => {
             myWillToLive.splice(index, 1)
           }
           daddy.push(myWillToLive)
-          res.send(daddy)
+          console.log(myWillToLive)
+          res.send(myWillToLive)
         }
       })
     }
@@ -118,10 +119,10 @@ router.post('/color', (req, res) => {
           var mommy = []
           var son = []
           var sister = []
-          for (var i = 0; i < arr.length; i++) {
+          /*for (var i = 0; i < arr.length; i++) {
             sister.push(arr[i].ArtID)
           }
-          son.push(sister)
+          son.push(sister)*/
           for (var i = 0; i < del.length; i++) {
             daddy.push(del[i].ArtID)
           }
@@ -132,8 +133,9 @@ router.post('/color', (req, res) => {
             var index = mommy.indexOf(daddy[i])
             mommy.splice(index, 1)
           }
-          son.push(mommy)
-          res.send(son)
+          //son.push(mommy)
+          console.log(mommy)
+          res.send(mommy)
         } else {
           res.send('500: Something broke')
         }

@@ -34,6 +34,7 @@ router.get('/', isAuthenticated, (req, res) => {
                 sess = 0
                 sess.toFixed(2)
               }
+              sess.toFixed(2)
               sess = sess + ' €'
               res.render('wishlist', { rows: result, user: user, fandom: fan, session: sess });
             }

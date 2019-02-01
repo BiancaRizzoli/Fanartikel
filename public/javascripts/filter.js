@@ -8,11 +8,11 @@ var category = (data) => {
         data: JSON.stringify(fuckingArray),
         dataType: 'json',
         success: (res) => {
-            for (var i = 0; i < res[0].length; i++) {
+            /*for (var i = 0; i < res[0].length; i++) {
                 document.getElementById(res[0][i]).style.display = 'block'
-            }
-            for (var i = 0; i < res[1].length; i++) {
-                document.getElementById(res[1][i]).style.display = 'none'
+            }*/
+            for (var i = 0; i < res.length; i++) {
+                document.getElementById(res[i]).style.display = 'none'
             }
         },
         error: () => {
@@ -31,11 +31,11 @@ var color = (data) => {
         data: JSON.stringify(fuckingArray),
         dataType: 'json',
         success: (res) => {
-            for (var i = 0; i < res[0].length; i++) {
+            /*for (var i = 0; i < res[0].length; i++) {
                 document.getElementById(res[0][i]).style.display = 'block'
-            }
-            for (var i = 0; i < res[1].length; i++) {
-                document.getElementById(res[1][i]).style.display = 'none'
+            }*/
+            for (var i = 0; i < res.length; i++) {
+                document.getElementById(res[i]).style.display = 'none'
             }
         },
         error: () => {

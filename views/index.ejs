@@ -56,9 +56,10 @@
               Fandoms
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <% for(var i=0; i < fandom.length; i++) { %>
-              <p><button class="fandombtn" onclick="fandom(<%= fandom[i].FandomID %>)" ><img src="/images/<%= fandom[i].Bild %>" style="width:120px;" class=mydropdownimages></button></p>
-              <% } %> 
+              <% for(var i=0; i < fandom.length; i++) { %>
+              <p><button class="fandombtn" onclick="fandom(<%= fandom[i].FandomID %>)"><img src="/images/<%= fandom[i].Bild %>"
+                    style="width:120px;" class=mydropdownimages></button></p>
+              <% } %>
             </div>
           </li>
         </ul>
@@ -71,10 +72,11 @@
         <div class="col product-bottom">
           <!--categories-->
           <div class="categories animated wow fadeInUp animated" data-wow-delay=".5s">
-            
+
             <h3>Categories</h3>
             <ul class="cate">
-              <li><i class="glyphicon glyphicon-menu-right"></i><button class="categoriesbtn" onclick="reset()">Alle Artikel</button></li>
+              <li><i class="glyphicon glyphicon-menu-right"></i><button class="categoriesbtn" onclick="reset()">Alle
+                  Artikel</button></li>
               <% for(var i=0; i < categories.length; i++) { %>
               <li><i class="glyphicon glyphicon-menu-right"></i><button class="categoriesbtn" onclick="category(<%= categories[i].KatID %>)">
                   <%= categories[i].Kategorie %></button><span>(
@@ -127,8 +129,9 @@
               <p><em class="item_price">
                   <%= rows[i].Preis.toFixed(2) %>
                   <%= rows[i].Waehrung %>
-                  </em></p>
-        <p><a onclick="addToCheckout(<%= rows[i].ArtID %>)" data-text="Add To Cart" class="but-hover1 item_add">Add to Cart</a></p>
+                </em></p>
+              <p><a onclick="addToCheckout(<%= rows[i].ArtID %>)" data-text="Add To Cart" class="but-hover1 item_add">Add
+                  to Cart</a></p>
               <% if (ben.indexOf(rows[i].ArtID) !== -1) {  %>
               <i id="a<%= rows[i].ArtID %>" onclick="addWish(<%= rows[i].ArtID %>)" class="material-icons red cursor">favorite</i>
               <% } else { %>

@@ -21,6 +21,7 @@
   <script type="text/javascript" src="/javascripts/bootstrap.js"></script>
   <script src="/javascripts/filter.js"></script>
   <script src="/javascripts/wish.js"></script>
+  <script src="/javascripts/checkout.js"></script>
 </head>
 
 <body>
@@ -46,7 +47,7 @@
             <a class="nav-link" href="/">Home</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="/wishlist" >Wunschliste</a>
+            <a class="nav-link" href="/wishlist">Wunschliste</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -55,9 +56,10 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <% for(var i=0; i < fandom.length; i++) { %>
-                <p><button class="fandombtn" onclick="fandom(<%= fandom[i].FandomID %>)" ><img src="/images/<%= fandom[i].Bild %>" style="width:120px;" class=mydropdownimages></button></p>
-                <% } %> 
-              </div>
+              <p><button class="fandombtn" onclick="fandom(<%= fandom[i].FandomID %>)"><img src="/images/<%= fandom[i].Bild %>"
+                    style="width:120px;" class=mydropdownimages></button></p>
+              <% } %>
+            </div>
           </li>
         </ul>
       </div>
@@ -87,11 +89,14 @@
             <div class="women">
               <div class="bezeichnung">
                 <h6>
-                    <%= rows[i].Bezeichnung %></h6>
+                  <%= rows[i].Bezeichnung %>
+                </h6>
               </div>
               <p><em class="item_price">
-                  <%= rows[i].Preis.toFixed(2) %> <%= rows[i].Waehrung %></em></p>
-              <p><a href="#" data-text="Add To Cart" class="but-hover1 item_add">Add To Cart</a></p>
+                  <%= rows[i].Preis.toFixed(2) %>
+                  <%= rows[i].Waehrung %></em></p>
+              <p><a onclick="addToCheckout(<%= rows[i].ArtID %>)" data-text="Add To Cart" class="but-hover1 item_add">Add
+                  to Cart</a></p>
               <button onclick="removeWish(<%= rows[i].ArtID %>)" class="btn-danger">Löschen</button>
             </div>
           </div>
