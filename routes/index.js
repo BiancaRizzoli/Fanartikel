@@ -49,12 +49,10 @@ router.get('/', isAuthenticated, (req, res) => {
                           var sess
                           if (req.session.price) {
                             sess = req.session.price
-                            sess.toFixed(2)
                           } else {
                             sess = 0
-                            sess.toFixed(2)
                           }
-                          sess = sess+' €'
+                          sess = sess.toFixed(2) + ' €'
                           res.render('index', { rows: result, user: user, categories: categories, color: color, fandom: fan, ben: wish, session: sess });
                         }
                       })
@@ -84,11 +82,6 @@ router.post('/category', (req, res) => {
           var myWillToLive = []
           var myGrades = []
           var daddy = []
-          //var test = []
-          /*for (var i = 0; i < allID.length; i++) {
-            test.push(allID[i].ArtID)
-          }
-          daddy.push(test)*/
           for (var i = 0; i < allID.length; i++) {
             myWillToLive.push(allID[i].ArtID)
           }
@@ -100,7 +93,6 @@ router.post('/category', (req, res) => {
             myWillToLive.splice(index, 1)
           }
           daddy.push(myWillToLive)
-          console.log(myWillToLive)
           res.send(myWillToLive)
         }
       })
@@ -117,12 +109,6 @@ router.post('/color', (req, res) => {
         if (!err) {
           var daddy = []
           var mommy = []
-          var son = []
-          var sister = []
-          /*for (var i = 0; i < arr.length; i++) {
-            sister.push(arr[i].ArtID)
-          }
-          son.push(sister)*/
           for (var i = 0; i < del.length; i++) {
             daddy.push(del[i].ArtID)
           }
@@ -133,8 +119,6 @@ router.post('/color', (req, res) => {
             var index = mommy.indexOf(daddy[i])
             mommy.splice(index, 1)
           }
-          //son.push(mommy)
-          console.log(mommy)
           res.send(mommy)
         } else {
           res.send('500: Something broke')
@@ -201,21 +185,21 @@ router.post('/reset', (req, res) => {
 router.post('/checkout', (req, res) => {
   if (req.body.ArtID) {
     var sql = 'SELECT artikel.Preis FROM artikel WHERE artikel.ArtID = ?'
-    con.query(sql, [req.body.ArtID], (err, price)=>{
+    con.query(sql, [req.body.ArtID], (err, price) => {
       if (err) {
-        res.send({message: 'SELECT Error'})
+        res.send({ message: 'SELECT Error' })
       } else {
         if (!req.session.price) {
           req.session.price = price[0].Preis
         } else {
           req.session.price += price[0].Preis
         }
-        res.send({price: req.session.price.toFixed(2)})
+        res.send({ price: req.session.price.toFixed(2) })
       }
-    })  
+    })
   } else {
     req.session.price = 0
-    res.send({price: 0})
+    res.send({ price: 0 })
   }
 })
 
@@ -229,6 +213,7 @@ function isAuthenticated(req, res, next) {
 
 // Logout
 router.get('/logout', (req, res) => {
+  req.session.price = 0
   req.flash('success', 'Abgemeldet')
   req.logout();
   res.redirect('/login');

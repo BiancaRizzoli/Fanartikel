@@ -29,13 +29,10 @@ router.get('/', isAuthenticated, (req, res) => {
               var sess
               if (req.session.price) {
                 sess = req.session.price
-                sess.toFixed(2)
               } else {
                 sess = 0
-                sess.toFixed(2)
               }
-              sess.toFixed(2)
-              sess = sess + ' €'
+              sess = sess.toFixed(2) + ' €'
               res.render('wishlist', { rows: result, user: user, fandom: fan, session: sess });
             }
           })
