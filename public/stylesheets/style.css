@@ -221,7 +221,7 @@ ul.column-dropdown h6 {
 }
 
 .fandombtn{
-    margin: 3px;
+    margin: 10px;
     border: none;
     background-color: white;
     color: black;
@@ -511,8 +511,8 @@ em.item_price {
 	font: 300 1em/3.5em 'Cabin', sans-serif;
 	text-decoration: none;
       line-height: 1.9em;
-	color: #fff;
-	background: #1d1b1b;
+    color: #fff;
+	background: #2f2f2f;
 	-moz-transition: ease 0.35s all;
 	-ms-transition: ease 0.35s all;
 	-o-transition: ease 0.35s all;

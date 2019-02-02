@@ -50,18 +50,6 @@
           <li class="nav-item">
             <a class="nav-link" href="/wishlist">Wunschliste</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              Fandoms
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <% for(var i=0; i < fandom.length; i++) { %>
-              <p><button class="fandombtn" onclick="fandom(<%= fandom[i].FandomID %>)"><img src="/images/<%= fandom[i].Bild %>"
-                    style="width:120px;" class=mydropdownimages></button></p>
-              <% } %>
-            </div>
-          </li>
         </ul>
       </div>
     </div>
@@ -73,12 +61,24 @@
           <!--categories-->
           <div class="categories animated wow fadeInUp animated" data-wow-delay=".5s">
 
-            <h3>Categories</h3>
+            <h3>Fandoms</h3>
+            <div style="margin-bottom: 30px; margin-top: 20px; margin-left: 3px">
+              <% for(var i=0; i < fandom.length; i++) { %>
+              <p><button class="fandombtn cursor" onclick="fandom(<%= fandom[i].FandomID %>)"><img src="/images/<%= fandom[i].Bild %>"
+                    style="width:120px;" class=mydropdownimages></button></p>
+              <% } %>
+            </div>
+          </div>
+
+
+          <div class="categories animated wow fadeInUp animated" data-wow-delay=".5s">
+
+            <h3>Kategorien</h3>
             <ul class="cate">
-              <li><i class="glyphicon glyphicon-menu-right"></i><button class="categoriesbtn" onclick="reset()">Alle
+              <li><i class="glyphicon glyphicon-menu-right"></i><button class="categoriesbtn cursor" onclick="reset()">Alle
                   Artikel</button></li>
               <% for(var i=0; i < categories.length; i++) { %>
-              <li><i class="glyphicon glyphicon-menu-right"></i><button class="categoriesbtn" onclick="category(<%= categories[i].KatID %>)">
+              <li><i class="glyphicon glyphicon-menu-right"></i><button class="categoriesbtn cursor" onclick="category(<%= categories[i].KatID %>)">
                   <%= categories[i].Kategorie %></button><span>(
                   <%= categories[i].Anzahl %>)</span></li>
               <% } %>
@@ -89,12 +89,12 @@
           <!--//menu-->
           <!--colors-->
           <div class="colors animated wow fadeInLeft animated" data-wow-delay=".5s">
-            <h3>Colors</h3>
+            <h3>Farben</h3>
 
             <div class="color-top">
               <ul>
                 <% for(var i=0; i < color.length; i++) { %>
-                <li><button class="colorbtn" style="background:<%= color[i].Farbe %>;" onclick="color(<%= i+1 %>)"></button></li>
+                <li><button class="colorbtn cursor" style="background:<%= color[i].Farbe %>;" onclick="color(<%= i+1 %>)"></button></li>
                 <% } %>
               </ul>
             </div>
@@ -130,7 +130,7 @@
                   <%= rows[i].Preis.toFixed(2) %>
                   <%= rows[i].Waehrung %>
                 </em></p>
-              <p><a onclick="addToCheckout(<%= rows[i].ArtID %>)" data-text="Add To Cart" class="but-hover1 item_add">Add
+              <p><a style="color:white" onclick="addToCheckout(<%= rows[i].ArtID %>)" data-text="Add To Cart" class="but-hover1 item_add cursor">Add
                   to Cart</a></p>
               <% if (ben.indexOf(rows[i].ArtID) !== -1) {  %>
               <i id="a<%= rows[i].ArtID %>" onclick="addWish(<%= rows[i].ArtID %>)" class="material-icons red cursor">favorite</i>
