@@ -59,7 +59,6 @@ function removeWish(ArtID) {
             if ($('.simpleCart_shelfItem').length === 0) {
                 $('#pic').removeClass('hide');
             } 
-            console.log($('.simpleCart_shelfItem').length);
         },
         error: (res) => {
             console.log('Error')
