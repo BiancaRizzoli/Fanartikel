@@ -568,6 +568,9 @@ em.item_price {
     height: auto;
     margin: 10px;
   }
+.hide{
+    display: none
+}
 
 .red {
     color: red;
