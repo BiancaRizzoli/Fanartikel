@@ -1,4 +1,4 @@
-<div id="messages" class="text-center">
+<div style="position: fixed;top: 0px; width: 100%;z-index:1030;" id="messages" class="text-center">
     <% Object.keys(messages).forEach(function (type) { %>
     <ul class="alert alert-<%= type %> alert-dismissible fade show" role="alert">
         <% messages[type].forEach(function (message) { %>

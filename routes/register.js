@@ -25,6 +25,11 @@ router.post('/', (req, res) => {
     return res.redirect('/register')
   }
 
+  if (!validateZipcode(req.body.zipcode)) {
+    req.flash('warning', 'Die Postleitzahl muss eine Zahl sein');
+    return res.redirect('/register');
+  }
+
   if (!validateUsername(req.body.username)) {
     req.flash('warning', 'Der Benutzername darf keine Sonderzeichen, keine Leerzeichen und nur maximal 50 Zeichen enthalten');
     return res.redirect('/register');
@@ -91,6 +96,15 @@ var validateUsername = (str) => {
 var validatePwd = (str) => {
   if (str !== undefined || str !== '') {
     var re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!_\-*()@%&]).{8,50}$/;
+    return re.test(String(str));
+  } else {
+    return false;
+  }
+}
+
+var validateZipcode = (str) => {
+  if (str !== undefined || str !== '') {
+    var re = /^[0-9]{1,11}$/;
     return re.test(String(str));
   } else {
     return false;
