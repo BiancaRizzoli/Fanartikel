@@ -53,16 +53,13 @@ function removeWish(ArtID) {
         contentType: 'application/json',
         data: JSON.stringify(mommy),
         dataType: 'json',
-        success: (res) => {
-            console.log($('.simpleCart_shelfItem').length);
+        success: () => {
+            var datSelector = '#'+mommy.ArtikelID
+            $(datSelector).remove()
             if ($('.simpleCart_shelfItem').length === 0) {
-                var datSelector = '#'+mommy.ArtikelID
-                $(datSelector).remove();
                 $('#pic').removeClass('hide');
-            } else {
-                var datSelector = '#'+mommy.ArtikelID
-                $(datSelector).remove();
-            }
+            } 
+            console.log($('.simpleCart_shelfItem').length);
         },
         error: (res) => {
             console.log('Error')
