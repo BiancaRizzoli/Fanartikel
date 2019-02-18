@@ -20,17 +20,9 @@ router.get('/', (req, res) => {
 /* POST register */
 router.post('/', (req, res) => {
   // Validation
-  if (!validateFirstName(req.body.firstname)) {
-    req.flash('warning', 'Der Vorname darf keine Zahlen, Leerzeichen und Sonderzeichen enthalten');
-    return res.redirect('/register');
-  }
-  if (!validateLastName(req.body.lastname)) {
-    req.flash('warning', 'Der Nachname darf keine Zahlen, Leerzeichen und Sonderzeichen enthalten');
-    return res.redirect('/register');
-  }
-  if (!validateZipcode(req.body.zipcode)) {
-    req.flash('warning', 'Die Postleitzahl darf nur Zahlen enthalten');
-    return res.redirect('/register');
+  if (req.body.firstname.length == 0 || req.body.lastname.length === 0 || req.body.city.length === 0 || req.body.zipcode.length === 0 || req.body.address.length === 0) {
+    req.flash('warning', 'Bitte füllen Sie alle Felder aus');
+    return res.redirect('/register')
   }
 
   if (!validateUsername(req.body.username)) {
@@ -43,77 +35,61 @@ router.post('/', (req, res) => {
     return res.redirect('/register');
   }
 
-
-  // Encrypt password
-  bcrypt.genSalt(10, (err, salt) => {
+  // Check if user exists
+  var sql = 'SELECT Benutzername FROM Benutzer WHERE Benutzername = ?'
+  con.query(sql, [req.body.username], (err, user) => {
     if (err) {
-      req.flash('danger', 'Error')
+      req.flash('danger', 'Datenbank offline')
       res.redirect('/register')
     } else {
-      bcrypt.hash(req.body.password, salt, (err, hash) => {
-        if (err) {
-          req.flash('danger', 'Error')
-          res.redirect('/register')
-        } else {
-          var sql = 'INSERT INTO benutzer (Vorname, Nachname, Adresse, Postleitzahl, Ort, Benutzername, Passwort, StatusID) VALUES ?'
-          var values = [
-            [req.body.firstname, req.body.lastname, req.body.address, req.body.zipcode, req.body.city, req.body.username, hash, 2]
-          ]
-          con.query(sql, [values], (err) => {
-            if (err) {
-              req.flash('danger', 'Datenbank offline!')
-              res.redirect('/register')
-            } else {
-              req.flash('success', 'Benutzer erstellt!')
-              res.redirect('/login')
-            }
-          })
-        }
-      })
+      if (user.length) {
+        req.flash('warning', 'Benutzer existiert schon')
+        res.redirect('/register')
+      } else {
+        // Encrypt password
+        bcrypt.genSalt(10, (err, salt) => {
+          if (err) {
+            req.flash('danger', 'Error')
+            res.redirect('/register')
+          } else {
+            bcrypt.hash(req.body.password, salt, (err, hash) => {
+              if (err) {
+                req.flash('danger', 'Error')
+                res.redirect('/register')
+              } else {
+                var sql = 'INSERT INTO benutzer (Vorname, Nachname, Adresse, Postleitzahl, Ort, Benutzername, Passwort, StatusID) VALUES ?'
+                var values = [
+                  [req.body.firstname, req.body.lastname, req.body.address, req.body.zipcode, req.body.city, req.body.username, hash, 2]
+                ]
+                con.query(sql, [values], (err) => {
+                  if (err) {
+                    req.flash('danger', 'Datenbank offline')
+                    res.redirect('/register')
+                  } else {
+                    req.flash('success', 'Benutzer erstellt!')
+                    res.redirect('/login')
+                  }
+                })
+              }
+            })
+          }
+        })
+      }
     }
   })
 })
 
-
-var validateFirstName = (str) => {
-  console.log(str)
-  if (str !== undefined || str === '') {
-    var re = /^[a-zA-Z]*$/;
-    return re.test(String(str));  
-  } else {
-    return false;
-  }
-}
-
-var validateLastName = (str) => {
-  if (str !== undefined || str === '' ) {
-    var re = /^[a-zA-Z]*$/;
-    return re.test(String(str));  
-  } else {
-    return false;
-  }
-}
-
-var validateZipcode = (str) => {
-  if (str !== undefined || str === '') {
-    var re = /^[0-9]{1,11}$/;
-    return re.test(String(str));  
-  } else {
-    return false;
-  }
-}
-
 var validateUsername = (str) => {
-  if (str !== undefined || str === '') {
+  if (str !== undefined || str !== '') {
     var re = /^[a-zA-Z0-9_-]{1,50}$/;
-    return re.test(String(str));  
+    return re.test(String(str));
   } else {
     return false;
   }
 }
 
 var validatePwd = (str) => {
-  if (str !== undefined || str === '') {
+  if (str !== undefined || str !== '') {
     var re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!_\-*()@%&]).{8,50}$/;
     return re.test(String(str));
   } else {
