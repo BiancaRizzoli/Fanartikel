@@ -19,6 +19,8 @@ router.get('/', (req, res) => {
 
 /* POST register */
 router.post('/', (req, res) => {
+  // Validation
+  
   // Encrypt password
   bcrypt.genSalt(10, (err, salt) => {
     if (err) {

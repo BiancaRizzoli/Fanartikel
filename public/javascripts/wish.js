@@ -54,11 +54,15 @@ function removeWish(ArtID) {
         data: JSON.stringify(mommy),
         dataType: 'json',
         success: (res) => {
-            document.getElementById(mommy.ArtikelID).style.display = 'none'
-            /*$('body').after('<div style="position: fixed;bottom: 5px;left: 10px;" class="alert alert-' + res.type + ' alert-dismissible fade show text-center" role="alert">' + res.message + '.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>')
-            setTimeout(() => {
-                $(".alert").alert('close')
-            }, 5000);*/
+            console.log($('.simpleCart_shelfItem').length);
+            if ($('.simpleCart_shelfItem').length === 0) {
+                var datSelector = '#'+mommy.ArtikelID
+                $(datSelector).remove();
+                $('#pic').removeClass('hide');
+            } else {
+                var datSelector = '#'+mommy.ArtikelID
+                $(datSelector).remove();
+            }
         },
         error: (res) => {
             console.log('Error')
