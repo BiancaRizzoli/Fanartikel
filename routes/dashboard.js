@@ -92,20 +92,20 @@ router.post('/upload', (req, res) => {
           var values = [[req.body.text, req.files.pic1.name, req.files.pic2.name, req.body.price, currency, color]]
           con.query(sql, [values], (err) => {
             if (err) {
-              req.flash('danger', err.message)
+              req.flash('danger', 'Error')
               res.redirect('/dashboard')
             } else {
               var sql = 'SELECT ArtID FROM `artikel` WHERE Bezeichnung = ?'
               con.query(sql, [req.body.text], (err, result) => {
                 if (err) {
-                  req.flash('danger', err.message)
+                  req.flash('danger', 'Error')
                   res.redirect('/dashboard')
                 } else {
                   var sql = 'INSERT INTO artikelkategorien (KatID, ArtID) VALUES ?'
                   var values = [[req.body.category, result[0].ArtID]]
                   con.query(sql, [values], (err) => {
                     if (err) {
-                      req.flash('danger', err.message)
+                      req.flash('danger', 'Error')
                       res.redirect('/dashboard')
                     } else {
                       var sql = 'INSERT INTO artikelfandoms (ArtID, FandomID) VALUES ?'
@@ -114,7 +114,7 @@ router.post('/upload', (req, res) => {
                       ]
                       con.query(sql, [values], (err) => {
                         if (err) {
-                          req.flash('danger', err.message)
+                          req.flash('danger', 'Error')
                           res.redirect('/dashboard')
                         } else {
                           req.flash('success', 'Produkt hinzugefügt')
@@ -143,7 +143,7 @@ router.post('/delete', (req, res) => {
   var deletesql = 'DELETE FROM artikel WHERE ArtID IN (?)'
   con.query(deletesql, [req.body], (err) => {
     if (err) {
-      req.flash('danger', err.message)
+      req.flash('danger', 'Error')
       res.send('Error')
     } else {
       req.flash('success', 'Produkt(e) gelöscht')
@@ -177,7 +177,7 @@ router.post('/userremove', (req, res) => {
     var sql = 'DELETE FROM benutzer WHERE Benutzername = ?'
     con.query(sql, [req.body.userremove], (err) => {
       if (err) {
-        req.flash('warning', err.message)
+        req.flash('warning', 'Error')
         res.redirect('/dashboard')
       } else {
         req.flash('success', 'Benutzer gelöscht')

@@ -12,7 +12,4 @@ Konfiguration:
 
 Success!
 
-ToDo:
-- Checkout
-- Filter
 
