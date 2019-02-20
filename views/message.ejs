@@ -1,0 +1,14 @@
+<div style="position: fixed;top: 0px; width: 100%;z-index:1030;" id="messages" class="text-center">
+    <% Object.keys(messages).forEach(function (type) { %>
+    <ul class="alert alert-<%= type %> alert-dismissible fade show" role="alert">
+        <% messages[type].forEach(function (message) { %>
+        <div>
+            <%= message %>
+        </div>
+        <% }) %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </ul>
+    <% }) %>
+</div>

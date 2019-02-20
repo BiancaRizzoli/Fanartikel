@@ -1,0 +1,40 @@
+<!-- header -->
+<div class="header">
+    <div class="header-grid">
+        <div class="header-left animated wow fadeInLeft" data-wow-delay=".5s">
+            <ul>
+
+            </ul>
+        </div>
+        <div class="header">
+            <% if (user[0].Status == 'Admin'){%>
+            <a class="btn btn-secondary" href="/dashboard" role="button" style="padding:3px;font-size:15px; margin: 4px">Dashboard</a>
+            <% } %>
+            <a class="btn btn-secondary" href="/logout" role="button" style="padding:3px;font-size:15px; margin: 4px; float: right">Logout</a>
+            <div class="cart box_1">
+                    <h3>
+                        <div class="total" id="total">
+                             <span id="total"><%= session %></span></div>
+                        <img src="/images/cart.png" alt="" />
+                    </h3>
+                <p><a onclick="addToCheckout()" class="simpleCart_empty cursor">Delete Sum</a></p>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+<div class="container">
+    <div class="logo-nav">
+        <div class="navbar-header nav_2">
+            <div class="navbar-brand logo-nav-left wow fadeInLeft animated" data-wow-delay=".5s">
+                <h1 class="animated wow pulse" data-wow-delay=".5s"><a href="/">Fandom<span>World</span></a></h1>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+</div>
+<!-- //header -->

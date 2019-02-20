@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/images/Icon.png">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="/stylesheets/login.css">
+    <script src="/javascripts/bootstrap.js"></script>
+    <script src="/javascripts/autoclose.js"></script>
+</head>
+
+<body style="background-color:#3485f9">
+    <%- messages('message', locals) %>
+    <div style="float: right; padding: 10px">
+        <button onclick="window.location = '/register'" type="button" class="btn btn-secondary btn-left">Registrieren</button>
+    </div>
+    <div class="login-container">
+        <form action="/login" method="POST">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Benutzername" name="username" required>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Passwort" name="password"
+                                    required>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right;">
+                            <button class="btn btn-primary" type="submit">Einloggen</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</body>
+
+</html>

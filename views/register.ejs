@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/images/Icon.png">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="/stylesheets/register.css">
+    <script src="/javascripts/bootstrap.js"></script>
+    <script src="/javascripts/autoclose.js"></script>
+</head>
+
+<body style="background-color:#3485f9">
+    <%- messages('message', locals) %>
+    <div style="float: right; padding: 10px">
+        <button onclick="window.location = '/login'" type="button" class="btn btn-secondary btn-left">Anmelden</button>
+    </div>
+    <div class="register-container">
+        <form action="/register" method="POST">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Vorname" name="firstname">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Nachname" name="lastname">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Addresse" name="address">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Ort" name="city">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Postleitzahl" name="zipcode"
+                                    maxlength="11">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Benutzername" name="username">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Passwort" name="password">
+                            </div>
+                        </td>
+                    </tr>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right;">
+                            <button class="btn btn-primary" type="submit">Registrieren</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</body>
+
+</html>

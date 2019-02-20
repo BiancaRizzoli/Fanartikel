@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Fanartikel</title>
+  <link rel="shortcut icon" type="image/x-icon" href="/images/Icon.png">
+  <!-- CSS -->
+  <link href="/stylesheets/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="/stylesheets/style.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="/stylesheets/animate.min.css" rel="stylesheet">
+  <link href='//fonts.googleapis.com/css?family=Cabin:400,500,600,700' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <!-- JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="/javascripts/wow.min.js"></script>
+  <script type="text/javascript" src="/javascripts/bootstrap.js"></script>
+  <script src="/javascripts/filter.js"></script>
+  <script src="/javascripts/wish.js"></script>
+  <script src="/javascripts/checkout.js"></script>
+</head>
+
+<body>
+  <%- include('header'); -%>
+
+  <!--banner-->
+  <div class="banner-top">
+    <div class="container">
+      <h2 class="animated wow fadeInLeft" data-wow-delay=".5s">Fanartikel</h2>
+      <div class="clearfix"> </div>
+    </div>
+  </div>
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #2f2f2f;">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/wishlist">Wunschliste</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="product">
+    <div class="container">
+      <div class="filter">
+        <div class="col product-bottom">
+          <!--categories-->
+          <div class="categories animated wow fadeInUp animated" data-wow-delay=".5s">
+
+            <h3>Fandoms</h3>
+            <div style="margin-bottom: 30px; margin-top: 20px; margin-left: 3px">
+              <% for(var i=0; i < fandom.length; i++) { %>
+              <p><button class="fandombtn cursor" onclick="fandom(<%= fandom[i].FandomID %>)"><img src="/images/<%= fandom[i].Bild %>"
+                    style="width:120px;" class=mydropdownimages></button></p>
+              <% } %>
+            </div>
+          </div>
+
+
+          <div class="categories animated wow fadeInUp animated" data-wow-delay=".5s">
+
+            <h3>Kategorien</h3>
+            <ul class="cate">
+              <li><i class="glyphicon glyphicon-menu-right"></i><button class="categoriesbtn cursor" onclick="reset()">Alle
+                  Artikel</button></li>
+              <% for(var i=0; i < categories.length; i++) { %>
+              <li><i class="glyphicon glyphicon-menu-right"></i><button class="categoriesbtn cursor" onclick="category(<%= categories[i].KatID %>)">
+                  <%= categories[i].Kategorie %></button><span>(
+                  <%= categories[i].Anzahl %>)</span></li>
+              <% } %>
+            </ul>
+          </div>
+
+
+          <!--//menu-->
+          <!--colors-->
+          <div class="colors animated wow fadeInLeft animated" data-wow-delay=".5s">
+            <h3>Farben</h3>
+
+            <div class="color-top">
+              <ul>
+                <% for(var i=0; i < color.length; i++) { %>
+                <li><button class="colorbtn cursor" style="background:<%= color[i].Farbe %>;" onclick="color(<%= i+1 %>)"></button></li>
+                <% } %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="productlist animated wow fadeInRight" data-wow-delay=".5s">
+        <% for(var i=0; i < rows.length; i++) { %>
+        <div class="col item-grid simpleCart_shelfItem" style="width: 200px;float: left;margin: 10px;padding:0px" id="<%= rows[i].ArtID %>">
+          <div class="grid-pro" style="width:200px; margin: auto">
+            <div class=" grid-product ">
+              <figure>
+                <a>
+                  <% if(rows[i].BildShownSecond !== null){ %>
+                  <div class="grid-img">
+                    <img src="/images/<%= rows[i].BildShownSecond %>" class="img-responsive" alt="">
+                  </div>
+                  <% } %>
+                  <div class="grid-img">
+                    <img src="/images/<%= rows[i].BildShownFirst %>" class="img-responsive" alt="">
+                  </div>
+                </a>
+              </figure>
+            </div>
+            <div class="women">
+              <div class="bezeichnung">
+                <h6>
+                  <%= rows[i].Bezeichnung %>
+                </h6>
+              </div>
+              <p><em class="item_price">
+                  <%= rows[i].Preis.toFixed(2) %>
+                  <%= rows[i].Waehrung %>
+                </em></p>
+              <p><a style="color:white" onclick="addToCheckout(<%= rows[i].ArtID %>)" data-text="Add To Cart" class="but-hover1 item_add cursor">Add
+                  to Cart</a></p>
+              <% if (ben.indexOf(rows[i].ArtID) !== -1) {  %>
+              <i id="a<%= rows[i].ArtID %>" onclick="addWish(<%= rows[i].ArtID %>)" class="material-icons red cursor">favorite</i>
+              <% } else { %>
+              <i id="a<%= rows[i].ArtID %>" onclick="addWish(<%= rows[i].ArtID %>)" class="material-icons cursor">favorite</i>
+              <% } %>
+            </div>
+          </div>
+        </div>
+        <% } %>
+        <div class="clearfix"></div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+
+
+    <%- include('footer'); -%>
+</body>
+
+</html>
