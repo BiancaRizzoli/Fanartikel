@@ -68,7 +68,7 @@ router.get('/', isAuthenticated, (req, res) => {
   })
 });
 
-router.post('/category', (req, res) => {
+router.post('/category', isAuthenticated, (req, res) => {
   var sql = 'SELECT a.ArtID  FROM artikel as a JOIN artikelkategorien as ak ON a.ArtID = ak.ArtID JOIN kategorien as k on ak.KatID = k.KatID WHERE k.KatID = ?'
   con.query(sql, [req.body], (err, filterID) => {
     if (err) {
@@ -100,7 +100,7 @@ router.post('/category', (req, res) => {
   })
 })
 
-router.post('/color', (req, res) => {
+router.post('/color', isAuthenticated, (req, res) => {
   var sql = 'SELECT ArtID FROM artikel WHERE FarbID = ?'
   con.query(sql, [req.body], (err, del) => {
     if (!err) {
@@ -130,7 +130,7 @@ router.post('/color', (req, res) => {
   })
 })
 
-router.post('/fandom', (req, res) => {
+router.post('/fandom', isAuthenticated, (req, res) => {
   var sql = 'SELECT ArtID FROM artikel'
   con.query(sql, (err, result) => {
     if (err) {
@@ -167,7 +167,7 @@ router.post('/fandom', (req, res) => {
   })
 })
 
-router.post('/reset', (req, res) => {
+router.post('/reset', isAuthenticated, (req, res) => {
   var sql = 'SELECT ArtID FROM artikel'
   con.query(sql, (err, result) => {
     if (err) {
@@ -182,7 +182,7 @@ router.post('/reset', (req, res) => {
   })
 })
 
-router.post('/checkout', (req, res) => {
+router.post('/checkout', isAuthenticated, (req, res) => {
   if (req.body.ArtID) {
     var sql = 'SELECT artikel.Preis FROM artikel WHERE artikel.ArtID = ?'
     con.query(sql, [req.body.ArtID], (err, price) => {

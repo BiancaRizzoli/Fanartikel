@@ -43,7 +43,7 @@ router.get('/', isAuthenticated, (req, res) => {
 });
 
 // Add things to wishlist
-router.post('/', (req, res) => {
+router.post('/', isAuthenticated, (req, res) => {
   var sql = 'SELECT BenID FROM benutzer WHERE Benutzername = ?'
   con.query(sql, [req.user.Benutzername], (err, result) => {
     if (err) {
@@ -80,7 +80,7 @@ router.post('/', (req, res) => {
   })
 })
 
-router.post('/remove', (req, res) => {
+router.post('/remove', isAuthenticated, (req, res) => {
   var sql = 'DELETE FROM benutzerwunschliste WHERE ArtID = ? AND BenID = (SELECT BenID FROM benutzer WHERE Benutzername = ?)'
   con.query(sql, [req.body.ArtikelID, req.user.Benutzername], (err) => {
     if (err) {

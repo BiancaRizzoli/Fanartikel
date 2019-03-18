@@ -61,7 +61,7 @@ function isAuthenticated(req, res, next) {
 }
 
 router.use(fileUpload());
-router.post('/upload', (req, res) => {
+router.post('/upload',isAuthenticated, (req, res) => {
   var currency = 1
   var color
   if (req.body.color === 'Schwarz') {
@@ -139,7 +139,7 @@ router.post('/upload', (req, res) => {
   })
 })
 
-router.post('/delete', (req, res) => {
+router.post('/delete',isAuthenticated, (req, res) => {
   var deletesql = 'DELETE FROM artikel WHERE ArtID IN (?)'
   con.query(deletesql, [req.body], (err) => {
     if (err) {
@@ -152,7 +152,7 @@ router.post('/delete', (req, res) => {
   })
 })
 
-router.post('/userchange', (req, res) => {
+router.post('/userchange',isAuthenticated, (req, res) => {
   if (req.body.right == 'Admin') {
     var sql = 'UPDATE benutzer SET StatusID = 1 WHERE Benutzername = ?'
   } else if (req.body.right == 'Kunde') {
@@ -169,7 +169,7 @@ router.post('/userchange', (req, res) => {
   })
 })
 
-router.post('/userremove', (req, res) => {
+router.post('/userremove',isAuthenticated, (req, res) => {
   if (req.user.Benutzername === req.body.userremove) {
     req.flash('warning', 'Du kannst dich nicht selber löschen!')
     res.redirect('/dashboard')
